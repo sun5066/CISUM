@@ -1,0 +1,88 @@
+script.
+    $(document).ready(function () {
+        $(document).on('click', '.del_btn', function () {
+            var id = $(this).attr("data-id");
+            $.ajax({
+                type: "GET",
+                url: "/cisum/delete/" + id,
+                error: function (error) {
+                    alert("Error!");
+                },
+                success: function (result) {
+                    var newHtml = $(result).find("#content");
+                    $("#content").html(newHtml);
+                },
+            });
+        });
+
+        $(document).on('click', '.btn-play-handle', function() {
+            var id = $(this).attr("data-id");
+            var index = Number.parseInt($(this).attr("data-index"));
+            playVideo(id, index);
+        })
+
+        $(document).on('click', '.btn-download-handle', function() {
+            var id = $(this).attr("data-id");
+            document.location.href = "/cisum/download/" + id;
+        })
+
+        $(document).on('mouseover', '.item-handle-list', function() {
+            var index = $(this).attr("data-index");
+            $("#play_view_tr_" + index).css("border-right", "5px solid rgb(253, 181, 63)")
+        })
+
+        $(document).on('mouseover', '.play-list', function() {
+            var index = $(this).attr("data-index");
+            $("#play_view_tr_" + index).css("border-right", "5px solid rgb(253, 181, 63)")
+        })
+
+        $(document).on('mouseleave', '.item-handle-list', function() {
+            var index = $(this).attr("data-index");
+            $("#play_view_tr_" + index).css("border-right", "none")
+        })
+
+        $(document).on('mouseleave', '.play-list', function() {
+            var index = $(this).attr("data-index");
+            $("#play_view_tr_" + index).css("border-right", "none")
+        })
+    });
+
+style.
+    button {
+        margin: 3px;
+        cursor: pointer;
+    }
+
+    .play-list {
+        border-left: 5px solid rgb(60, 60, 60);
+    }
+
+    tr, td {
+        opacity: 1;
+        cursor: pointer;
+    }
+
+    #play-list-table {
+        border-top: 1px solid white;
+    }
+section.container
+    br
+    h1 플레이리스트
+    table(id="play-list-table").table.table-striped.table-hover.thead-dark.table-borderless
+        tr
+            th 썸네일
+            th 제목
+            th
+        each vo, index in csList
+            tr(id="play_view_tr_" + index, data-index=index).play-list
+                td(rowspan=2, width="30%")
+                    img(src="https://i.ytimg.com/vi/" + vo.cs_id +"/hqdefault.jpg", alt="", id="frame_" + index, data-id= vo.cs_id, width="100%")
+                    //- iframe(id="frame_" + index, data-id= vo.cs_id, width="220", height="125", src= "https://www.youtube.com/embed/" + vo.cs_id + "?rel=0", frameborder="0", allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture", allowfullscreen).youtubeFrame
+                td= vo.cs_title
+                td(rowspan=2, width="1px").tr_hover_color
+            tr.play-list
+                td(data-index=index).item-handle-list
+                    input(type="hidden", name="index", id="index_input", value=index)
+                    button(type="button", data-id=vo.cs_id, data-index=index).btn-play-handle.btn.btn-outline-light.btn-sm 이 영상 재생
+                    button(type="button", data-id=vo.cs_id).btn-download-handle.btn.btn-outline-success.btn-sm 다운로드
+                    button(type="button", data-id=vo._id).del_btn.btn.btn-outline-danger.btn-sm 목록에서 삭제

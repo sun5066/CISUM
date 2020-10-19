@@ -1,0 +1,37 @@
+link(rel="stylesheet", href="/stylesheets/join.css")
+
+body
+    form(action="#", method="post")
+        fieldset
+            legend 필수 입력 사항
+            table
+                tr
+                    td 아이디
+                    td
+                        input(id="id", type="text", name="cs_id", placeholder="ID를 입력해주세요")
+                    td
+                        button 아이디 중복 확인
+                tr
+                    td 이메일
+                    td
+                        input(id="email", type="email", name="cs_email", placeholder="email을 입력해주세요")
+                    td
+                        button 인증
+                tr
+                    td 비밀번호
+                    td
+                        input(id="password", type="password", name="cs_password", placeholder="비밀번호를 입력해주세요")
+                tr
+                    td 비밀번호
+                    td
+                        input(id="re_password", type="password", placeholder="비밀번호 재입력")
+        fieldset
+            legend 추가 입력 사항
+            table(id="birth")
+                tr
+                    td
+                        label 생년월일
+                    td
+                        input(type="text", id="datepicker", name="cs_date", placeholder="생년월일을 입력해주세요")
+            p
+                a(href="/cisum/join") 회원가입

@@ -1,0 +1,15 @@
+script.
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelector("#register").addEventListener("click", function () {
+            document.location.href = "/cisum/join";
+        })
+    })
+link(rel="stylesheet", href="/stylesheets/login.css")
+body
+    article(id="login_body")
+        form
+            h2 LOGIN
+            input(name="m_userid", placeholder="ID", typw="text")
+            input(name="m_password", placeholder="Password", type="password")
+            button 로그인
+            button(id="register", type="button") 회원가입

@@ -1,0 +1,24 @@
+script(src="/javascripts/cisumList.js")
+link(rel="stylesheet", href="/stylesheets/search.css")
+link(rel="stylesheet", href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css")
+section.container
+    br
+    .container-4
+        br
+        input(type="text", name="word", id="search", placeholder="Search").input
+        button(type="button", id="btn_search").icon
+            i.fa.fa-search
+    br
+    h2 #{search_word}
+    table(id="search-list-table").table.table-striped.table-hover.thead-dark.table-borderless
+        tr
+            th 동영상
+            th 제목
+            th _
+        each vo in cisumList
+            tr.view-list
+                td 
+                    iframe(width="220", height="125", src= "https://www.youtube.com/embed/" + vo.cs_id + "?rel=0", frameborder="0", allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture", allowfullscreen)
+                td= vo.cs_title
+                td
+                    button(type="button", data-id=vo).list-add-button.btn.btn-outline-primary.btn-block 추가

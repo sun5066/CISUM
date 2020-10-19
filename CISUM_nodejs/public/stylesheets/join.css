@@ -1,0 +1,124 @@
+@charset "UTF-8";
+:root {
+  --text-color: ghostwhite;
+  --background-color: rgb(50, 50, 50);
+  --background-color2: rgb(60, 60, 60);
+  --accent-color: dodgerblue;
+  --accent-color2: rgb(35, 168, 109);
+  --accent-color3: rgb(220, 85, 96);
+  --accent-color4: rgb(253, 181, 63);
+  --accent-color5: rgb(155, 88, 181);
+}
+
+body {
+  background-color: var(--background-color2);
+}
+
+form {
+  width: 500px;
+  padding: 40px;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  transform: translate(-50%, -50%);
+
+  background-color: ghostwhite;
+  text-align: center;
+  border-radius: 10px;
+
+  animation-name: login_box_top_down;
+  animation-duration: 0.8s;
+
+  -webkit-animation-name: login_box_top_down;
+  -webkit-animation-duration: 0.8s;
+
+  -moz-animation-name: login_box_top_down;
+  -moz-animation-duration: 0.8s;
+}
+
+fieldset {
+  background-color: var(--text-color);
+  border: 2px solid var(--accent-color);
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+legend {
+  color: var(--accent-color);
+  font-weight: bold;
+}
+
+table {
+  margin: 0 auto;
+  width: 100%;
+}
+
+tr td:first-child {
+  font-weight: bold;
+  text-align: left;
+}
+
+tr td:nth-child(3) {
+  margin-left: 5px;
+  text-align: left;
+}
+
+table#birth tr td:first-child {
+  text-align: right;
+}
+
+table#birth tr td input {
+  width: 70%;
+}
+
+td button {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  padding: 3px;
+  border: 2px solid var(--accent-color);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+td button:hover {
+  background-color: var(--text-color);
+  color: var(--accent-color);
+  border: 2px solid var(--accent-color);
+  transition: 0.5s;
+}
+
+input {
+  padding: 5px 10px;
+  outline: none;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+a {
+  background-color: var(--accent-color);
+  color: var(--text-color);
+  padding: 10px 100px;
+  border: 2px solid var(--accent-color);
+  border-radius: 4px;
+  text-decoration: none;
+}
+
+a:hover {
+  background-color: var(--text-color);
+  color: var(--accent-color);
+  transition: 0.5s;
+}
+
+@keyframes login_box_top_down {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+
+  to {
+    top: 50%;
+    opacity: 1;
+  }
+}
