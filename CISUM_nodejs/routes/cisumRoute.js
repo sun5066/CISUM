@@ -25,6 +25,7 @@ router.post("/search", function (req, res) {
                 cisumList,
                 search_word: "트래픽 제한 걸림!",
             });
+
             return;
         }
 
