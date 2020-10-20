@@ -33,8 +33,8 @@ router.post("/search", function (req, res) {
             var item = itemList[i];
 
             cisumList.push({
-                cs_id: item["snippet"]["title"],
-                cs_title: item["id"]["videoId"],
+                cs_id: item["id"]["videoId"],
+                cs_title: item["snippet"]["title"],
             });
         }
 
