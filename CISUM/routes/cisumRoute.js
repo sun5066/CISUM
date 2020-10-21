@@ -4,20 +4,12 @@ const YoutubeNode = require("youtube-node");
 const ytdl = require("ytdl-core");
 var csVO = require("../models/csVO");
 
-const admin = require("firebase-admin");
-const serviceAccount = require("path/to/serviceAccountKey.json");
-
-admin.initializeApp({
-    credential: admin.credential.cert(serviceAccount),
-    databaseURL: "https://test-4d92f.firebaseio.com"
-});
-
 /**
  * @param 'order', 'rating' 평점 순으로 정렬
  * @param 'type', 'video' 타입 지정
  * @param 'videoLicense', 'creativeCommon' 크리에이티브 커먼즈 아이템만 불러옴
  */
-router.post("/search", function (req, res) {
+router.post("/search", (req, res) => {
     var word = req.body.word;
     var youtube = new YoutubeNode();
     youtube.setKey("AIzaSyAlDuYSZyqDcJGGZvjbXxgv21_0pGrnKYE");
@@ -60,7 +52,7 @@ router.post("/search", function (req, res) {
  * @param csVO 모델(DB)에 저장후
  * 메인화면과 /cisum/playlist/ 페이지 연결
  */
-router.post("/addlist", function (req, res) {
+router.post("/addlist", (req, res) => {
     let json = JSON.parse(JSON.stringify(req.body));
     let dataBase = new csVO(json);
     dataBase
@@ -77,7 +69,7 @@ router.post("/addlist", function (req, res) {
  * @TODO 회원가입, 로그인 기능이 추가된다면
  *    유저의 PK 값으로 조건문 달아서 Select 할것
  */
-router.get("/playlist", function (req, res) {
+router.get("/playlist", (req, res) => {
     csVO.find().then(function (csList) {
         res.render("playList", { csList });
     });
@@ -87,7 +79,7 @@ router.get("/playlist", function (req, res) {
  * @param id 는 Spring의 PathVariable 방식으로
  * @url http://localhost:3000/cisum/delete/id 값으로 오면 해당 id 값을 DB에서 찾아서 삭제
  */
-router.get("/delete/:id", function (req, res) {
+router.get("/delete/:id", (req, res) => {
     let _id = req.params.id;
     csVO.findOneAndDelete({ _id })
         .then(function (result) {
@@ -102,28 +94,15 @@ router.get("/delete/:id", function (req, res) {
  * @url http://localhost:3000/cisum/login 로그인 화면 출력
  * @url http://localhost:3000/cisum/join 회원가입 화면 출력
  */
-router.get("/login", function (req, res) {
-    res.render("login", { title: "CISUM Player" });
+router.get("/login", (req, res) => {
+    res.render("test", { title: "CISUM Player" });
 });
 
-router.post("/login", function (req, res) {
-    var email = res.params.email;
-    admin.auth().getUserByEmail(email)
-        .then(function (userRecord) {
-            // See the UserRecord reference doc for the contents of userRecord.
-            console.log('Successfully fetched user data:', userRecord.toJSON());
-        })
-        .catch(function (error) {
-            console.log('Error fetching user data:', error);
-        });
-    res.redirect("/")
-})
-
-router.get("/join", function (req, res) {
+router.get("/join", (req, res) => {
     res.render("join", { title: "CISUM Player" });
 });
 
-router.get("/video", function (req, res) {
+router.get("/video", (req, res) => {
     res.render("player");
 });
 
