@@ -1,8 +1,14 @@
 $(function () {
-    __init();
-    $("#register").click(function () {
-        let email = $("#email");
-        let password = $("#password");
-        register(email, password);
+    $("#login").click(function () {
+        $.ajax({
+            url: "/cisum/login",
+            type: "GET",
+            success: function (result) {
+                $("div#login-modal").html(result);
+            },
+            error: function (error) {
+                alert("서버 통신 오류 :(");
+            }
+        });
     });
 });
