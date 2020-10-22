@@ -95,7 +95,7 @@ router.get("/delete/:id", (req, res) => {
  * @url http://localhost:3000/cisum/join 회원가입 화면 출력
  */
 router.get("/login", (req, res) => {
-    res.render("test", { title: "CISUM Player" });
+    res.render("login", { title: "CISUM Player" });
 });
 
 router.get("/join", (req, res) => {
