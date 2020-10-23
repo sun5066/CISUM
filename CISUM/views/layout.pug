@@ -5,16 +5,17 @@ html(lang="ko")
     meta(name="viewport", content="width=device-width, initial-scale=1")
     title CISUM PLAYER
     link(rel="stylesheet", href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css")
-    link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Nanum+Myeongjo:wght@700&display=swap")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Jua&display=swap")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&display=swap")
     link(rel="stylesheet", href="/stylesheets/index.css")
     script(src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js")
     script(src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js")
     script(src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js")
     script(src="https://kit.fontawesome.com/7917d00817.js")
     script(src="/javascripts/first-connect.js")
-    script(src="/javascripts/firebase.js")
+    script(src="/javascripts/index.js")
     style.
-      #first-connect-body {
+      #join-body {
         display: block;
         position: absolute;
         z-index: 1;
@@ -23,12 +24,21 @@ html(lang="ko")
         width: 100%;
         height: 100%;
         overflow: auto;
-        background-color: rgb(50, 50, 50);
+        background-color: rgb(60, 60, 60);
         text-align: center;
       }
 
+      div#login-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+      }
+
     div(id="first-connect-body")
-      video(src="../video/cisum_logo.mp4", width="100%", height="98%", autoplay, muted)
-      
+      video(src="../video/cisum_logo.mp4", width="100%", autoplay, muted)
+    div(id="login-modal")
   body
     block content

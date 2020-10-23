@@ -1,8 +1,28 @@
+script.
+    $(document).ready(function() {
+        $("#login-span").click(function () {
+            $("div#login-modal").css("display", "none");
+        });
+        $("#register").click(function () {
+            $.ajax({
+                url: "/cisum/join",
+                type: "GET",
+                success: function (result) {
+                    $("div#login-modal").html(result);
+                },
+                error: function (error) {
+                    alert("서버 통신 오류 :(");
+                },
+            });
+        });
+    });
 link(rel="stylesheet", href="/stylesheets/login.css")
-body
-    article(id="login_body")
+article(id="login-body")
+    form
+        div.login_close
+            span(id="login-span") &times;
         h2 LOGIN
-        input(id="email", name="email", placeholder="ID", typw="text")
-        input(id="password", name="password", placeholder="Password", type="password")
-        button(id="login", type="button") 로그인
+        input(name="m_userid", placeholder="ID", type="text")
+        input(name="m_password", placeholder="Password", type="password")
+        button(type="button") 로그인
         button(id="register", type="button") 회원가입

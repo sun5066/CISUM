@@ -1,26 +1,75 @@
 link(rel="stylesheet", href="/stylesheets/join.css")
-script(src="/javascripts/register.js")
+script.
+    $(document).ready(function() {
+        $("#join-span").click(function () {
+            $("form#join-form").css("display", "none");
+            $("div#login-modal").css("display", "none");
+        });
 
+        $("#email-check").click(function(){
+            let email = $("#email").val();
+            if(email == ""){
+                alert("이메일을 입력해주세요 :)")
+                $("#email").focus();
+                return false;
+            }
+        })
+
+        // 회원가입 버튼 클릭했을때의 유효성 체크
+        $("#join-a").click(function() {
+            let email = $("#email").val();
+            let password = $("#password").val();
+            let re_password = $("#re-password").val();
+
+            if(email == ""){
+                alert("이메일을 입력해주세요 :)");
+                $("#email").focus();
+                return false;
+            } else if (password == "") {
+                alert("비밀번호를 입력해주세요:)");
+                $("#password").focus();
+                return false;
+            } else if (re_password == "") {
+                alert("비밀번호를 다시한번 입력해주세요");
+                $("#re-password").focus();
+                return false;
+            }
+
+
+            $.ajax({
+                url: "/cisum/login",
+                type: "GET", 
+                success: function(result) {
+                    $("div#login-modal").html(result);
+                },
+                error: function(error){
+                    alert("서버 통신 오류 :(")
+                },
+            });
+        });
+    });
 body
-    form(action="#", method="post")
+    form(id="join-form", method="post")
+        div.join_close
+            span(id="join-span") &times;
         fieldset
             legend 필수 입력 사항
-            table
+            table(id="join-table")
                 tr
                     td 이메일
                     td
                         input(id="email", type="email", name="cs_email", placeholder="email을 입력해주세요")
                     td
-                        button 인증
+                        button(type="btton", id="email-check") 인증
                 tr
                     td 비밀번호
                     td
                         input(id="password", type="password", name="cs_password", placeholder="비밀번호를 입력해주세요")
                 tr
-                    td 비밀번호
+                    td 비밀번호 확인
                     td
-                        input(id="re_password", type="password", placeholder="비밀번호 재입력")
-        fieldset
+                        input(id="re-password", type="password", placeholder="비밀번호 재입력")
+        fieldset(id="birth-fieldset")
             legend 추가 입력 사항
             table(id="birth")
                 tr
@@ -28,5 +77,5 @@ body
                         label 생년월일
                     td
                         input(type="text", id="datepicker", name="cs_date", placeholder="생년월일을 입력해주세요")
-            p
-                a(href="/cisum/join") 회원가입
+        div.join_move_login
+            a(id="join-a") 회원가입

@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    $("#left_menu").on("click", "#btn_search", function () {
+    $("#left-menu").on("click", "#btn_search", function () {
         $.ajax({
             type: "POST",
             url: "/cisum/search/",
@@ -9,8 +9,8 @@ $(document).ready(function () {
                 alert("Error!");
             },
             success: function (result) {
-                // var newHtml = $(result).find("#left_menu");
-                $("#left_menu").html(result);
+                // var newHtml = $(result).find("#left-menu");
+                $("#left-menu").html(result);
             },
         });
     });
