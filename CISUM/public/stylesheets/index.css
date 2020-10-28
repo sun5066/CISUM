@@ -29,7 +29,7 @@ body {
 
 nav {
     background-color: var(--background-color);
-    color: ghostwhite;
+    color: white;
 }
 
 nav ul {
@@ -60,7 +60,7 @@ nav ul li a {
     display: inline-block;
     text-decoration: none;
     color: inherit;
-    font-size: 30px;
+    font-size: 40px;
 }
 
 #player {
@@ -73,13 +73,14 @@ nav ul li a {
     text-decoration: none;
 }
 
-/* 맨 오른쪽 홈 버튼*/
 .fab.fa-napster:hover {
     color: var(--text-color);
     text-decoration: none;
     transition: 0.5s;
 }
-.fas.fa-check:hover {
+
+.fas.fa-toggle-off:hover,
+.fas.fa-toggle-on:hover {
     color: var(--accent-color);
     text-decoration: none;
     transition: 0.5s;
@@ -94,22 +95,34 @@ section#main-section {
     font-family: "Jua", sans-serif;
 }
 
-#main-section aside {
+#main-section .left-aside {
     flex: 1px;
     overflow: auto;
     background-color: var(--background-color);
     font-family: "Jua", sans-serif;
 }
 
-/* 오른쪽 메뉴 동영상 크기 줄이기 */
-#right-menu p {
-    width: 80%;
-    height: 50%;
-    justify-items: center;
-    text-align: center;
+#main-section aside#right-menu {
+    flex: 1px;
+    overflow: auto;
+    background-color: var(--background-color);
+    font-family: "Jua", sans-serif;
 }
 
-#main-section section {
+.left-aside .fas.fa-search {
+    display: inline-block;
+    margin-left: 30px;
+    font-size: 20px;
+    color: white;
+    cursor: pointer;
+}
+
+.left-aside .fas.fa-search:hover {
+    color: var(--accent-color);
+    transition: 0.5s;
+}
+
+#main-section section#content {
     flex: 3px;
     overflow: auto;
     background-color: var(--background-color2);
@@ -118,48 +131,85 @@ section#main-section {
 
 footer {
     background-color: rgb(50, 50, 50);
-    color: ghostwhite;
+    color: white;
 }
 
-footer address {
-    text-align: center;
-    background-color: inherit;
+footer {
+    text-align: left;
+    background-color: rgb(50, 50, 50);
     color: inherit;
-    padding: 1rem;
-    font-family: "Jua", sans-serif;
+    padding: 0.5rem;
 }
 
-footer address a {
-    display: inline-block;
-    font-size: 25px;
-    color: var(--text-color);
-    margin-left: 5px;
+footer div {
+    margin: 0px 0px 0px 20px;
 }
 
-/* 유튜브 버튼 */
-.fab.fa-youtube:hover {
-    color: rgb(255, 1, 1);
-    transition: 0.5s;
+footer div button {
+    padding: 5px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
 }
 
-/* 인스타그램 버튼 */
-.fab.fa-instagram:hover {
-    background: #f7ff00;
-    background: -webkit-linear-gradient(to right, #f7ff00, #db36a4);
-    background: -o-linear-gradient(to right, #f7ff00, #db36a4);
-    background: -moz-linear-gradient(to right, #f7ff00, #db36a4);
-    background: linear-gradient(to right, #f7ff00, #db36a4);
-    -webkit-background-clip: text;
-    -moz-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-    -moz-text-fill-color: transparent;
+footer div button {
+    color: var(--accent-color4);
+}
+
+footer div button:hover {
+    color: white;
     transition: 0.5s;
 }
 
 th,
 td {
     color: white;
+}
+
+input[type="range"] {
+    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+    height: 10px;
+    width: 15%;
+    cursor: pointer;
+    background: var(--accent-color4);
+    border-radius: 2px;
+    margin-bottom: auto;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    vertical-align: middle !important;
+    -webkit-appearance: none;
+    border: 2px solid var(--accent-color4);
+    height: 20px;
+    width: 20px;
+    border-radius: 20px;
+    background: white;
+    cursor: pointer;
+    margin-top: auto;
+}
+
+input[type="range"]:focus {
+    outline: none;
+}
+
+footer {
+    display: flex;
+}
+
+div.player-contoller {
+    width: 100%;
+}
+
+div.player-title {
+    width: 100%;
+    text-align: right;
+    margin-right: 30px;
+}
+
+div.player-title h4 {
+    color: white;
+    font-family: "Jua", sans-serif;
 }
 
 /* view port화면의 width가 768px보다 작아지면 적용할 CSS */

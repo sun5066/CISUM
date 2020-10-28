@@ -6,6 +6,7 @@ script.
             $("div#login-modal").css("display", "none");
         });
 
+        // 공백이면 넘어가지 못하게 하는 유효성 체크
         $("#email-check").click(function(){
             let email = $("#email").val();
             if(email == ""){
@@ -34,7 +35,6 @@ script.
                 $("#re-password").focus();
                 return false;
             }
-
 
             $.ajax({
                 url: "/cisum/login",

@@ -8,11 +8,14 @@ block content
       ul
         li
           a(href="/").fab.fa-napster
-        li 
-          a(id="login_a").fas.fa-check
+        li
+          a(id="login_a").fas.fa-toggle-off
+          //- .fas.fa-toggle-on (로그인 완료했을때 나타날 아이콘)
     section(id="main-section")
-      aside(id="left-menu")
-        include ./cisumList.pug
+      div.left-aside
+        i.fas.fa-search
+        aside(id="left-menu")
+          include ./cisumList.pug
       section(id="content")
         div(id="playlist-body")
           include ./playList.pug
@@ -20,8 +23,12 @@ block content
         div(id="player-body").loading
           include ./player.pug
   footer
-    address Contact US
-      a(href="https://www.youtube.com/")
-        i.fab.fa-youtube
-      a(href="https://www.instagram.com/plutorxr/")
-        i.fab.fa-instagram
+    div.player-contoller
+      button(type="button", id="prev_btn").fas.fa-fast-backward
+      button(type="button", id="sleep_btn").fas.fa-play
+      button(type="button", id="next_btn").fas.fa-fast-forward
+      button(type="button", id="stop_btn").fas.fa-stop
+      button(type="button", id="sound_btn").fas.fa-volume-up
+      input(type="range", id="volume_slider", style="padding-center:18px", min="0", max="100")
+    div.player-title
+      h4.title 플레이 영상 제목

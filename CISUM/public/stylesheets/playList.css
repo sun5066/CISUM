@@ -1,0 +1,73 @@
+button {
+  margin: 3px;
+  cursor: pointer;
+}
+
+.play-list {
+  border-left: 5px solid;
+}
+
+tr,
+td {
+  opacity: 1;
+  cursor: pointer;
+}
+
+#play-list-table {
+  border-top: 1px solid white;
+}
+
+section.container h1 {
+  margin: 0px 0px 0px 10px;
+}
+
+table#play-list-table button#play-btn {
+  outline: none;
+  cursor: pointer;
+  padding: 4px 6px;
+  border: 1px solid ghostwhite;
+  border-radius: 4px;
+  background: transparent;
+  color: white;
+}
+
+table#play-list-table button#play-btn:hover {
+  border: 1px solid transparent;
+  background: ghostwhite;
+  color: black;
+  transition: 0.5s;
+}
+
+table#play-list-table button#down-btn {
+  outline: none;
+  cursor: pointer;
+  padding: 4px 6px;
+  border: 1px solid rgb(35, 168, 109);
+  border-radius: 4px;
+  background: transparent;
+  color: rgb(35, 168, 109);
+}
+
+table#play-list-table button#down-btn:hover {
+  border: 1px solid rgb(35, 168, 109);
+  background: rgb(35, 168, 109);
+  color: white;
+  transition: 0.5s;
+}
+
+table#play-list-table button#delete-btn {
+  outline: none;
+  cursor: pointer;
+  padding: 4px 6px;
+  border: 1px solid rgb(220, 85, 96);
+  border-radius: 4px;
+  background: transparent;
+  color: rgb(220, 85, 96);
+}
+
+table#play-list-table button#delete-btn:hover {
+  border: 1px solid rgb(220, 85, 96);
+  background: rgb(220, 85, 96);
+  color: white;
+  transition: 0.5s;
+}

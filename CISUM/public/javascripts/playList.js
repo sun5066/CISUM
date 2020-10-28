@@ -11,7 +11,7 @@ function videoBorder() {
 }
 
 function nextVideo() {
-    document.querySelector("#play_view_tr_" + index).style.border = "none";
+    document.querySelector("#play_view_tr_" + index).style.border = "";
 
     index = index + 1;
     let selectFrame = document.getElementById("frame_" + index);
@@ -26,6 +26,11 @@ function nextVideo() {
         __player.loadVideoById(videoId, 0, "large");
         document.querySelector("#play_view_tr_" + index).style.borderLeft =
             "5px solid dodgerblue";
+
+        var title = document
+            .querySelector("#play_view_tr_" + index)
+            .getAttribute("data-title");
+        document.querySelector("div.player-title .title").innerText = title;
     }, 1000);
 }
 
@@ -37,13 +42,18 @@ function onYouTubeIframeAPIReady() {
 }
 
 function playVideo(id, newIndex) {
-    document.querySelector("#play_view_tr_" + index).style.borderLeft = "none";
+    document.querySelector("#play_view_tr_" + index).style.borderLeft = "";
 
     __player.loadVideoById(id, 0, "large");
 
     index = newIndex;
     document.querySelector("#play_view_tr_" + index).style.borderLeft =
         "5px solid dodgerblue";
+
+    var title = document
+        .querySelector("#play_view_tr_" + index)
+        .getAttribute("data-title");
+    document.querySelector("div.player-title .title").innerText = title;
 }
 
 function firstPlayVideo(id) {
@@ -75,6 +85,11 @@ function firstPlayVideo(id) {
 
     document.querySelector("#play_view_tr_0").style.borderLeft =
         "5px solid dodgerblue";
+
+    var title = document
+        .querySelector("#play_view_tr_0")
+        .getAttribute("data-title");
+    document.querySelector("div.player-title .title").innerText = title;
 }
 
 function onPlayerStateChange(event) {
@@ -85,45 +100,53 @@ function onPlayerStateChange(event) {
 
 function onPlayerReady(event) {
     event.target.playVideo();
-
+    document.getElementById("sleep_btn").setAttribute("class", "fas fa-pause");
     var volume = __player.getVolume();
     if (volume === 0) {
-        document.querySelector(".sound_btn").innerHTML = "🔈";
+        document
+            .querySelector("#sound_btn")
+            .setAttribute("class", "fas fa-volume-mute");
+    } else if (volume <= 30) {
+        document
+            .querySelector("#sound_btn")
+            .setAttribute("class", "fas fa-volume-down");
     } else {
-        document.querySelector(".sound_btn").innerHTML = "🔊";
+        document
+            .querySelector("#sound_btn")
+            .setAttribute("class", "fas fa-volume-up");
     }
-    document.querySelector(".volume_slider").value = volume;
+    document.querySelector("#volume_slider").value = volume;
 }
 
 /**
  * @HACK 코드 정리가 필요한 이벤트 메서드 구간
  */
 document.addEventListener("DOMContentLoaded", function () {
-    let sleepButton = document.querySelector(".sleep_btn");
-    let stopButton = document.querySelector(".stop_btn");
-    let prevButton = document.querySelector(".prev_btn");
-    let nextButton = document.querySelector(".next_btn");
-    let soundButton = document.querySelector(".sound_btn");
-    let volumeSlider = document.querySelector(".volume_slider");
+    const sleepButton = document.querySelector("#sleep_btn");
 
     sleepButton.addEventListener("click", function () {
-        var itemText = sleepButton.innerHTML;
-        if (itemText === "▶") {
-            sleepButton.innerHTML = "∥";
+        if (sleepButton.getAttribute("class") === "fas fa-play") {
+            __player.unMute();
+            sleepButton.setAttribute("class", "fas fa-pause");
             __player.playVideo();
         } else {
-            sleepButton.innerHTML = "▶";
+            sleepButton.setAttribute("class", "fas fa-play");
             __player.pauseVideo();
         }
     });
 
+    const stopButton = document.querySelector("#stop_btn");
+
     stopButton.addEventListener("click", function () {
-        sleepButton.innerHTML = "▶";
+        sleepButton.setAttribute("class", "fas fa-play");
         __player.stopVideo();
     });
 
+    const prevButton = document.querySelector("#prev_btn");
+
     prevButton.addEventListener("click", function () {
-        document.querySelector("#play_view_tr_" + index).style.border = "none";
+        document.querySelector("#play_view_tr_" + index).style.border = "";
+
         if (index <= 0) {
             let frameSize = document.querySelectorAll(".youtubeFrame").length;
             index = frameSize - 1;
@@ -132,8 +155,8 @@ document.addEventListener("DOMContentLoaded", function () {
         }
 
         let selectFrame = document.querySelector("#frame_" + index);
-        if (selectFrame === null) {
 
+        if (selectFrame === null) {
             /**
              * index = 0 을 줌으로써
              * #frame_0 Element를 선택
@@ -144,38 +167,55 @@ document.addEventListener("DOMContentLoaded", function () {
 
         var videoId = selectFrame.getAttribute("data-id");
         __player.loadVideoById(videoId, 0, "large");
-
         document.querySelector("#play_view_tr_" + index).style.borderLeft =
             "5px solid dodgerblue";
+        var title = document
+            .querySelector("#play_view_tr_" + index)
+            .getAttribute("data-title");
+        document.querySelector("div.player-title .title").innerText = title;
     });
+
+    const nextButton = document.querySelector("#next_btn");
 
     nextButton.addEventListener("click", function () {
         nextVideo();
     });
 
-    soundButton.addEventListener("click", function () {
-        if (soundButton.innerHTML === "🔊") {
-            __player.mute();
+    const soundButton = document.querySelector("#sound_btn");
 
-            soundButton.innerHTML = "🔈";
+    soundButton.addEventListener("click", function () {
+        var volume = __player.getVolume();
+
+        if (
+            soundButton.getAttribute("class") === "fas fa-volume-down" ||
+            soundButton.getAttribute("class") === "fas fa-volume-up"
+        ) {
+            __player.mute();
+            soundButton.setAttribute("class", "fas fa-volume-mute");
             volumeSlider.value = 0;
+        } else if (volume <= 30) {
+            __player.unMute();
+            soundButton.setAttribute("class", "fas fa-volume-down");
+            volumeSlider.value = volume;
         } else {
             __player.unMute();
-
-            var volume = __player.getVolume();
-            soundButton.innerHTML = "🔊";
+            soundButton.setAttribute("class", "fas fa-volume-up");
             volumeSlider.value = volume;
         }
     });
+
+    const volumeSlider = document.querySelector("#volume_slider");
 
     volumeSlider.addEventListener("input", function () {
         var volume = volumeSlider.value;
         __player.setVolume(volume);
 
         if (volume === 0) {
-            soundButton.innerHTML = "🔈";
+            soundButton.setAttribute("class", "fas fa-volume-mute");
+        } else if (volume <= 30) {
+            soundButton.setAttribute("class", "fas fa-volume-down");
         } else {
-            soundButton.innerHTML = "🔊";
+            soundButton.setAttribute("class", "fas fa-volume-up");
         }
     });
 });
