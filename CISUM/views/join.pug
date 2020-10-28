@@ -17,7 +17,7 @@ script.
         })
 
         // 회원가입 버튼 클릭했을때의 유효성 체크
-        $("#join-a").click(function() {
+        $(document).on("click", "#join-a", function() {
             let email = $("#email").val();
             let password = $("#password").val();
             let re_password = $("#re-password").val();
@@ -35,11 +35,12 @@ script.
                 $("#re-password").focus();
                 return false;
             }
-
+            
             $.ajax({
                 url: "/cisum/login",
                 type: "GET", 
                 success: function(result) {
+                    register(email, password);
                     $("div#login-modal").html(result);
                 },
                 error: function(error){

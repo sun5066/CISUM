@@ -5,9 +5,15 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 var __player;
 var index = 0;
 
-function videoBorder() {
-    document.querySelector("#play_view_tr_" + index).style.borderLeft =
+function titleChange(number) {
+    document.querySelector("#play_view_tr_" + number).style.borderLeft =
         "5px solid dodgerblue";
+
+    var title = document
+        .querySelector("#play_view_tr_" + number)
+        .getAttribute("data-title");
+    document.querySelector("div.player-title .title").innerText =
+        "현재 동영상 : " + title;
 }
 
 function nextVideo() {
@@ -24,13 +30,8 @@ function nextVideo() {
 
     setTimeout(function () {
         __player.loadVideoById(videoId, 0, "large");
-        document.querySelector("#play_view_tr_" + index).style.borderLeft =
-            "5px solid dodgerblue";
 
-        var title = document
-            .querySelector("#play_view_tr_" + index)
-            .getAttribute("data-title");
-        document.querySelector("div.player-title .title").innerText = title;
+        titleChange(index);
     }, 1000);
 }
 
@@ -47,13 +48,7 @@ function playVideo(id, newIndex) {
     __player.loadVideoById(id, 0, "large");
 
     index = newIndex;
-    document.querySelector("#play_view_tr_" + index).style.borderLeft =
-        "5px solid dodgerblue";
-
-    var title = document
-        .querySelector("#play_view_tr_" + index)
-        .getAttribute("data-title");
-    document.querySelector("div.player-title .title").innerText = title;
+    titleChange(index);
 }
 
 function firstPlayVideo(id) {
@@ -83,13 +78,7 @@ function firstPlayVideo(id) {
         },
     });
 
-    document.querySelector("#play_view_tr_0").style.borderLeft =
-        "5px solid dodgerblue";
-
-    var title = document
-        .querySelector("#play_view_tr_0")
-        .getAttribute("data-title");
-    document.querySelector("div.player-title .title").innerText = title;
+    titleChange(0);
 }
 
 function onPlayerStateChange(event) {
@@ -167,12 +156,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         var videoId = selectFrame.getAttribute("data-id");
         __player.loadVideoById(videoId, 0, "large");
-        document.querySelector("#play_view_tr_" + index).style.borderLeft =
-            "5px solid dodgerblue";
-        var title = document
-            .querySelector("#play_view_tr_" + index)
-            .getAttribute("data-title");
-        document.querySelector("div.player-title .title").innerText = title;
+        titleChange(index);
     });
 
     const nextButton = document.querySelector("#next_btn");

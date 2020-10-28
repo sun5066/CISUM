@@ -3,6 +3,7 @@ script.
         $("#login-span").click(function () {
             $("div#login-modal").css("display", "none");
         });
+
         $("#register").click(function () {
             $.ajax({
                 url: "/cisum/join",
@@ -14,7 +15,18 @@ script.
                     alert("서버 통신 오류 :(");
                 },
             });
-        }); 
+        });
+
+        $("#login-btn").click(function() {
+            alert("로그인띠");
+            var email = $("#userid").val();
+            var password = $("#password").val();
+            login(email, password);
+            // 유저정보 Get
+            getUser();
+
+            $("div#login-modal").css("display", "none");
+        });
     });
 link(rel="stylesheet", href="/stylesheets/login.css")
 article(id="login-body")
@@ -24,5 +36,5 @@ article(id="login-body")
         h2 LOGIN
         input(name="m_userid", id="userid", placeholder="E-mail", type="text")
         input(name="m_password", id="password", placeholder="Password", type="password")
-        button(type="button") 로그인
+        button(type="button", id="login-btn") 로그인
         button(id="register", type="button") 회원가입

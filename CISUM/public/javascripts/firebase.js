@@ -9,16 +9,14 @@ const firebaseConfig = {
     measurementId: "G-DCHZTY80LM",
 };
 
+// 나의 파이어베이스 서버에 연결
 var defaultProject = firebase.initializeApp(firebaseConfig);
 
-var defaultStorage = defaultProject.storage();
-var defaultFirestore = defaultProject.firestore();
+// 파이어베이스 서버에 있는 DB 담기
+var defaultStorage = firebase.storage();
+var defaultFirestore = firebase.firestore();
 
-(__init) => {
-    defaultStorage = firebase.storage();
-    defaultFirestore = firebase.firestore();
-};
-
+// 로그인 기능
 function login(email, password) {
     firebase
         .auth()
@@ -26,9 +24,12 @@ function login(email, password) {
         .catch(function (error) {
             var errorCode = error.code;
             var errorMessage = error.message;
+            console.log(errorCode);
+            console.log(errorMessage);
         });
 }
 
+// 회원가입 기능
 function register(email, password) {
     firebase
         .auth()
@@ -36,9 +37,33 @@ function register(email, password) {
         .catch(function (error) {
             var errorCode = error.code;
             var errorMessage = error.message;
+            console.log(errorCode);
+            console.log(errorMessage);
         });
 }
 
-$(function () {
-    __init();
-});
+function getUser() {
+    /**
+     * @example 데이터 코드
+     * var displayName = user.displayName;
+     * var email = user.email;
+     * var emailVerified = user.emailVerified;
+     * var photoURL = user.photoURL;
+     * var isAnonymous = user.isAnonymous;
+     * var uid = user.uid;
+     * var providerData = user.providerData;
+     */
+    firebase.auth().onAuthStateChanged(function (user) {
+        if (user) {
+            // User is signed in.
+            const login_btn = document.getElementById("login_a");
+            login_btn.setAttribute("class", "fas fa-toggle-on");
+            login_btn.setAttribute("data-email", user.email);
+        } else {
+            // User is signed out.
+            document
+                .getElementById("login_a")
+                .setAttribute("class", "fas fa-toggle-off");
+        }
+    });
+}
