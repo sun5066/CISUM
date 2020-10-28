@@ -30,7 +30,6 @@ function nextVideo() {
 
     setTimeout(function () {
         __player.loadVideoById(videoId, 0, "large");
-
         titleChange(index);
     }, 1000);
 }
