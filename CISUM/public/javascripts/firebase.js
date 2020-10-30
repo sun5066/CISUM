@@ -21,11 +21,20 @@ function login(email, password) {
     firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
+        .then(function (result) {
+            $("div#login-modal").css("display", "none");
+        })
         .catch(function (error) {
             var errorCode = error.code;
-            var errorMessage = error.message;
             console.log(errorCode);
-            console.log(errorMessage);
+            if (errorCode === "auth/wrong-password") {
+                alert("아이디/비밀번호가 맞지 않습니다!");
+                return;
+            }
+            if (errorCode === "auth/invalid-email") {
+                alert("찾을 수 없는 계정입니다!");
+                return;
+            }
         });
 }
 
@@ -37,8 +46,6 @@ function register(email, password) {
         .catch(function (error) {
             var errorCode = error.code;
             var errorMessage = error.message;
-            console.log(errorCode);
-            console.log(errorMessage);
         });
 }
 
@@ -66,4 +73,16 @@ function getUser() {
                 .setAttribute("class", "fas fa-toggle-off");
         }
     });
+}
+
+function logOut() {
+    firebase
+        .auth()
+        .signOut()
+        .then(function () {
+            // Sign-out successful.
+        })
+        .catch(function (error) {
+            // An error happened.
+        });
 }

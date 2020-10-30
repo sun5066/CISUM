@@ -106,6 +106,7 @@ section.container-searchList h2 {
 }
 
 #search-list-table button {
+  outline: none;
   border-radius: 4px;
   background: transparent;
   border: 1px solid dodgerblue;

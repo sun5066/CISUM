@@ -18,14 +18,22 @@ script.
         });
 
         $("#login-btn").click(function() {
-            alert("로그인띠");
+            // 로그인 공백일때의 유효성 체크
             var email = $("#userid").val();
             var password = $("#password").val();
+
+            if(email == ""){
+                alert("이메일을 입력해주세요 :)")
+                $("#userid").focus();
+                return false;
+            } else if (password == ""){
+                alert("비밀번호를 입력해주세요 :)")
+                $("#password").focus();
+                return false;
+            }
             login(email, password);
             // 유저정보 Get
             getUser();
-
-            $("div#login-modal").css("display", "none");
         });
     });
 link(rel="stylesheet", href="/stylesheets/login.css")

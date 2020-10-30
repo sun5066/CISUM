@@ -1,6 +1,17 @@
 script.
-    $(document).ready(function () {
-        $(document).on('click', '.delete_btn', function () {
+    $(function () {
+        $('.play-btn').on("click").unbind("click").bind("click", function() {
+            var id = $(this).attr("data-id");
+            var index = Number.parseInt($(this).attr("data-index"));
+            playVideo(id, index);
+        });
+
+        $('.download-btn').unbind("click").bind("click", function() {
+            var id = $(this).attr("data-id");
+            document.location.href = "/cisum/download/" + id;
+        });
+
+        $(".delete-btn").unbind("click").bind("click", function () {
             var id = $(this).attr("data-id");
             $.ajax({
                 type: "GET",
@@ -14,17 +25,6 @@ script.
                 },
             });
         });
-
-        $(document).on('click', '.play-btn', function() {
-            var id = $(this).attr("data-id");
-            var index = Number.parseInt($(this).attr("data-index"));
-            playVideo(id, index);
-        })
-
-        $(document).on('click', '.download-btn', function() {
-            var id = $(this).attr("data-id");
-            document.location.href = "/cisum/download/" + id;
-        })
 
         $(document).on('mouseover', '.item-handle-list', function() {
             var index = $(this).attr("data-index");
@@ -51,6 +51,7 @@ script.
         })
     });
 link(rel="stylesheet", href="/stylesheets/playList.css")
+
 section.container
     br
     h1 플레이리스트

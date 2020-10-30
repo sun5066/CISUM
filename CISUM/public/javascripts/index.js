@@ -1,4 +1,8 @@
 $(function () {
+    $(window).on("unload", function () {
+        logOut();
+    });
+
     getUser();
     $("div#login-modal").css("display", "none");
     $("#login_a").click(function () {

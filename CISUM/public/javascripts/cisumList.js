@@ -19,14 +19,11 @@ $(document).ready(function () {
         .off()
         .on("click", ".list-add-button", function () {
             var data = $(this).data("id");
+
             $.ajax({
                 type: "POST",
                 url: "/cisum/addlist/",
                 data,
-
-                error: function (error) {
-                    alert("Error!");
-                },
                 success: function (result) {
                     $("#playlist-body").html(result);
 
@@ -36,19 +33,22 @@ $(document).ready(function () {
                         firstPlayVideo($("#play_view_tr_0 img").data("id"));
                     }
                 },
+                error: function (error) {
+                    alert("Error!");
+                },
             });
         });
-    
-    $("i.fas.fa-search").click(function(e){
+
+    $("i.fas.fa-search").click(function (e) {
         $(".container-searchList").toggle();
         $(".container-searchList").toggleClass("open");
 
-        if($(".container-searchList").hasClass("open")){
-            $(".container-searchList").find("i").attr("class","fas fa-bars");
+        if ($(".container-searchList").hasClass("open")) {
+            $(".container-searchList").find("i").attr("class", "fas fa-bars");
         } else {
-            $(".container-searchList").find("i").attr("class","fas fa-search");
+            $(".container-searchList").find("i").attr("class", "fas fa-search");
         }
-    })
+    });
 });
 /*
      //접기/펼치기

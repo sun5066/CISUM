@@ -1,220 +1,201 @@
 @charset "UTF-8";
 * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
 :root {
-    --text-color: ghostwhite;
-    --background-color: rgb(50, 50, 50);
-    --background-color2: rgb(60, 60, 60);
-    --accent-color: dodgerblue;
-    --accent-color2: rgb(35, 168, 109);
-    --accent-color3: rgb(220, 85, 96);
-    --accent-color4: rgb(253, 181, 63);
-    --accent-color5: rgb(155, 88, 181);
+  --text-color: ghostwhite;
+  --background-color: rgb(50, 50, 50);
+  --background-color2: rgb(60, 60, 60);
+  --accent-color: dodgerblue;
+  --accent-color2: rgb(35, 168, 109);
+  --accent-color3: rgb(220, 85, 96);
+  --accent-color4: rgb(253, 181, 63);
+  --accent-color5: rgb(155, 88, 181);
 }
 
 html,
 body {
-    width: 100%;
-    height: 100%;
+  width: 100%;
+  height: 100%;
 }
 
 body {
-    display: flex;
-    flex-flow: column;
+  display: flex;
+  flex-flow: column;
 }
 
 nav {
-    background-color: var(--background-color);
-    color: white;
+  background-color: var(--background-color);
+  color: white;
 }
 
 nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0.5rem;
-    background-color: inherit;
-    color: inherit;
-    display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem;
+  background-color: inherit;
+  color: inherit;
+  display: flex;
 }
 
 nav ul li {
-    color: inherit;
-    background-color: inherit;
-    cursor: pointer;
-    padding: 12px 16px;
+  color: inherit;
+  background-color: inherit;
+  cursor: pointer;
+  padding: 12px 16px;
 }
 
 nav ul li:first-child {
-    margin-left: 30px;
+  margin-left: 30px;
 }
 
 ul li:nth-child(2) {
-    margin-left: auto;
+  margin-left: auto;
 }
 
 nav ul li a {
-    display: inline-block;
-    text-decoration: none;
-    color: inherit;
-    font-size: 40px;
+  display: inline-block;
+  text-decoration: none;
+  color: inherit;
+  font-size: 40px;
 }
 
 #player {
-    background-repeat: no-repeat;
-    background-size: cover;
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
 .fab.fa-napster {
-    color: var(--accent-color4);
-    text-decoration: none;
+  color: var(--accent-color4);
+  text-decoration: none;
 }
 
 .fab.fa-napster:hover {
-    color: var(--text-color);
-    text-decoration: none;
-    transition: 0.5s;
+  color: var(--text-color);
+  text-decoration: none;
+  transition: 0.5s;
 }
 
 .fas.fa-toggle-off:hover,
 .fas.fa-toggle-on:hover {
-    color: var(--accent-color);
-    text-decoration: none;
-    transition: 0.5s;
+  color: var(--accent-color);
+  text-decoration: none;
+  transition: 0.5s;
 }
 
 section#main-section {
-    flex: 100%;
-    width: 100%;
-    overflow: auto;
-    display: flex;
-    color: var(--text-color);
-    font-family: "Jua", sans-serif;
+  flex: 100%;
+  width: 100%;
+  overflow: auto;
+  display: flex;
+  color: var(--text-color);
+  font-family: "Jua", sans-serif;
 }
 
 #main-section .left-aside {
-    flex: 1px;
-    overflow: auto;
-    background-color: var(--background-color);
-    font-family: "Jua", sans-serif;
+  flex: 1px;
+  overflow: auto;
+  background-color: var(--background-color);
+  font-family: "Jua", sans-serif;
 }
 
 #main-section aside#right-menu {
-    flex: 1px;
-    overflow: auto;
-    background-color: var(--background-color);
-    font-family: "Jua", sans-serif;
+  flex: 1px;
+  overflow: auto;
+  background-color: var(--background-color);
+  font-family: "Jua", sans-serif;
 }
 
 .left-aside .fas.fa-search {
-    display: inline-block;
-    margin-left: 30px;
-    font-size: 20px;
-    color: white;
-    cursor: pointer;
+  display: inline-block;
+  margin-left: 30px;
+  font-size: 20px;
+  color: white;
+  cursor: pointer;
 }
 
 .left-aside .fas.fa-search:hover {
-    color: var(--accent-color);
-    transition: 0.5s;
+  color: var(--accent-color);
+  transition: 0.5s;
 }
 
 #main-section section#content {
-    flex: 3px;
-    overflow: auto;
-    background-color: var(--background-color2);
-    font-family: "Jua", sans-serif;
+  flex: 3px;
+  overflow: auto;
+  background-color: var(--background-color2);
+  font-family: "Jua", sans-serif;
 }
 
 footer {
-    background-color: rgb(50, 50, 50);
-    color: white;
+  display: flex;
+  text-align: left;
+  background-color: rgb(50, 50, 50);
+  color: white;
+  padding: 0.5rem;
 }
 
-footer {
-    text-align: left;
-    background-color: rgb(50, 50, 50);
-    color: inherit;
-    padding: 0.5rem;
+footer div.player-contoller {
+  margin-left: 20px;
+  width: 100%;
 }
 
-footer div {
-    margin: 0px 0px 0px 20px;
+footer div.player-contoller button {
+  padding: 5px;
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: var(--accent-color4);
 }
 
-footer div button {
-    padding: 5px;
-    outline: none;
-    border: none;
-    background-color: transparent;
-    cursor: pointer;
+footer div.player-contoller button:hover {
+  color: white;
+  transition: 0.5s;
 }
 
-footer div button {
-    color: var(--accent-color4);
+footer div.player-contoller input[type="range"] {
+  -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
+  height: 10px;
+  width: 15%;
+  cursor: pointer;
+  background: var(--accent-color4);
+  border-radius: 2px;
+  margin-bottom: auto;
 }
 
-footer div button:hover {
-    color: white;
-    transition: 0.5s;
+footer div.player-contoller input[type="range"]::-webkit-slider-thumb {
+  vertical-align: middle !important;
+  -webkit-appearance: none;
+  border: 2px solid var(--accent-color4);
+  height: 20px;
+  width: 20px;
+  border-radius: 20px;
+  background: white;
+  cursor: pointer;
+  margin-top: auto;
 }
 
-th,
-td {
-    color: white;
-}
-
-input[type="range"] {
-    -webkit-appearance: none; /* Hides the slider so that custom slider can be made */
-    height: 10px;
-    width: 15%;
-    cursor: pointer;
-    background: var(--accent-color4);
-    border-radius: 2px;
-    margin-bottom: auto;
-}
-
-input[type="range"]::-webkit-slider-thumb {
-    vertical-align: middle !important;
-    -webkit-appearance: none;
-    border: 2px solid var(--accent-color4);
-    height: 20px;
-    width: 20px;
-    border-radius: 20px;
-    background: white;
-    cursor: pointer;
-    margin-top: auto;
-}
-
-input[type="range"]:focus {
-    outline: none;
-}
-
-footer {
-    display: flex;
-}
-
-div.player-contoller {
-    width: 100%;
+footer div.player-contoller input[type="range"]:focus {
+  outline: none;
 }
 
 div.player-title {
-    width: 100%;
-    text-align: right;
-    margin-right: 30px;
+  width: 100%;
+  text-align: right;
+  margin-right: 30px;
 }
 
 div.player-title h4 {
-    color: white;
-    font-family: "Jua", sans-serif;
+  color: white;
+  font-family: "Jua", sans-serif;
 }
 
 /* view port화면의 width가 768px보다 작아지면 적용할 CSS */
 @media screen and (max-width: 768px) {
-    body {
-        flex-direction: column;
-    }
+  body {
+    flex-direction: column;
+  }
 }

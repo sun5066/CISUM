@@ -44,6 +44,8 @@ function onYouTubeIframeAPIReady() {
 function playVideo(id, newIndex) {
     document.querySelector("#play_view_tr_" + index).style.borderLeft = "";
 
+    console.log(__player);
+    // 이 색기 왜 안됨?
     __player.loadVideoById(id, 0, "large");
 
     index = newIndex;
