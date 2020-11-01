@@ -1,8 +1,4 @@
 $(function () {
-    $(window).on("unload", function () {
-        logOut();
-    });
-
     getUser();
     $("div#login-modal").css("display", "none");
     $("#login_a").click(function () {
@@ -22,7 +18,11 @@ $(function () {
                 },
             });
         } else {
-            alert("앙 기모띠!");
+            logOut();
         }
+    });
+    // 검색 리스트 열리는 js
+    $("div#search-icon i.fas.fa-search").click(function (e) {
+        $(".left-aside").toggleClass("open");
     });
 });

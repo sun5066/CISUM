@@ -19,8 +19,8 @@ section.container br {
 }
 
 .container-4 input#search {
-  width: 100%;
-  height: 49px;
+  width: 90%;
+  height: 50px;
   background: white;
   border: none;
   font-size: 10pt;
@@ -92,7 +92,7 @@ section.container br {
 }
 
 section.container-searchList h2 {
-  margin: 0px 0px 0px 30px;
+  margin: 0 0 0 30px;
 }
 
 #search-list-table {

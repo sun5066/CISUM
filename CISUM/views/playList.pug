@@ -1,17 +1,18 @@
+link(rel="stylesheet", href="/stylesheets/playList.css")
 script.
     $(function () {
-        $('.play-btn').on("click").unbind("click").bind("click", function() {
+        $(document).off().on("click", '.play-btn', function() {
             var id = $(this).attr("data-id");
             var index = Number.parseInt($(this).attr("data-index"));
             playVideo(id, index);
         });
 
-        $('.download-btn').unbind("click").bind("click", function() {
+        $(document).on("click", '.download-btn', function() {
             var id = $(this).attr("data-id");
             document.location.href = "/cisum/download/" + id;
         });
 
-        $(".delete-btn").unbind("click").bind("click", function () {
+        $(document).on("click", ".delete-btn", function () {
             var id = $(this).attr("data-id");
             $.ajax({
                 type: "GET",
@@ -50,7 +51,6 @@ script.
             $("#play_view_tr_" + index).css("transition", "0.5s")
         })
     });
-link(rel="stylesheet", href="/stylesheets/playList.css")
 
 section.container
     br

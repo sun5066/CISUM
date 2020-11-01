@@ -1,167 +1,177 @@
 @charset "UTF-8";
 :root {
-    --text-color: ghostwhite;
-    --background-color: rgb(50, 50, 50);
-    --background-color2: rgb(60, 60, 60);
-    --accent-color: dodgerblue;
-    --accent-color2: rgb(35, 168, 109);
-    --accent-color3: rgb(220, 85, 96);
-    --accent-color4: rgb(253, 181, 63);
-    --accent-color5: rgb(155, 88, 181);
+  --text-color: ghostwhite;
+  --background-color: rgb(50, 50, 50);
+  --background-color2: rgb(60, 60, 60);
+  --accent-color: dodgerblue;
+  --accent-color2: rgb(35, 168, 109);
+  --accent-color3: rgb(220, 85, 96);
+  --accent-color4: rgb(253, 181, 63);
+  --accent-color5: rgb(155, 88, 181);
 }
 
 form#join-form {
-    width: 500px;
-    padding: 40px;
+  width: 500px;
+  padding: 40px;
 
-    position: absolute;
-    top: 50%;
-    left: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
 
-    transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
 
-    background-color: var(--text-color);
-    text-align: center;
-    border-radius: 10px;
+  background-color: var(--text-color);
+  text-align: center;
+  border-radius: 10px;
 
-    animation-name: login_box_top_down;
-    animation-duration: 0.8s;
+  animation-name: login_box_top_down;
+  animation-duration: 0.8s;
 
-    -webkit-animation-name: login_box_top_down;
-    -webkit-animation-duration: 0.8s;
+  -webkit-animation-name: login_box_top_down;
+  -webkit-animation-duration: 0.8s;
 
-    -moz-animation-name: login_box_top_down;
-    -moz-animation-duration: 0.8s;
+  -moz-animation-name: login_box_top_down;
+  -moz-animation-duration: 0.8s;
 }
 
 form#join-form .join_close {
-    text-align: right;
+  display: flex;
+  width: 100%;
+}
+
+form#join-form span#back {
+  font-size: 20px;
+  font-weight: bold;
+  color: var(--accent-color2);
+  cursor: pointer;
+  text-align: left;
 }
 
 form#join-form span#join-span {
-    display: inline-block;
-    font-size: 20px;
-    font-weight: 500;
-    color: var(--accent-color2);
-    cursor: pointer;
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--accent-color2);
+  cursor: pointer;
+  margin-left: auto;
 }
 
+form#join-form span#back:hover,
 form#join-form span#join-span:hover {
-    color: rgb(220, 85, 96);
+  color: var(--accent-color3);
 }
 
 form#join-form fieldset {
-    background-color: var(--text-color);
-    border: 2px solid var(--accent-color2);
-    border-radius: 4px;
-    padding: 1rem;
+  background-color: var(--text-color);
+  border: 2px solid var(--accent-color2);
+  border-radius: 4px;
+  padding: 1rem;
 }
 
 form#join-form fieldset legend {
-    color: var(--accent-color2);
-    font-family: "Jua", sans-serif;
+  color: var(--accent-color2);
+  font-family: "Jua", sans-serif;
 }
 
 table#join-table {
-    width: 100%;
-    font-family: "Jua", sans-serif;
-    text-align: center;
+  width: 100%;
+  font-family: "Jua", sans-serif;
+  text-align: center;
 }
 
 table#join-table tr td:first-child {
-    color: var(--accent-color2);
-    font-weight: bold;
-    text-align: center;
+  color: var(--accent-color2);
+  font-weight: bold;
+  text-align: center;
 }
 
 table#join-table tr td:nth-child(3) {
-    margin-left: 5px;
-    text-align: center;
+  margin-left: 5px;
+  text-align: center;
 }
 
 table#join-table td button {
-    font-family: "Jua", sans-serif;
-    background-color: var(--text-color);
-    color: var(--accent-color3);
-    padding: 3px;
-    border: 2px solid var(--accent-color3);
-    border-radius: 4px;
-    cursor: pointer;
-    text-decoration: none;
+  font-family: "Jua", sans-serif;
+  background-color: var(--text-color);
+  color: var(--accent-color3);
+  padding: 3px;
+  border: 2px solid var(--accent-color3);
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
 }
 
 table#join-table td button:hover {
-    background-color: var(--accent-color3);
-    color: var(--text-color);
-    border: 2px solid var(--accent-color3);
-    transition: 0.5s;
+  background-color: var(--accent-color3);
+  color: var(--text-color);
+  border: 2px solid var(--accent-color3);
+  transition: 0.5s;
 }
 
 form#join-form input {
-    width: 100%;
-    padding: 5px 10px;
-    margin: 5px;
-    outline: none;
-    border: 1px solid var(--accent-color2);
-    border-radius: 4px;
-    font-family: "Nanum Gothic Coding", monospace;
-    font-size: small;
+  width: 100%;
+  padding: 5px 10px;
+  margin: 5px;
+  outline: none;
+  border: 1px solid var(--accent-color2);
+  border-radius: 4px;
+  font-family: "Nanum Gothic Coding", monospace;
+  font-size: small;
 }
 
 form#join-form input#id,
 form#join-form input#email {
-    width: 100%;
+  width: 100%;
 }
 
 fieldset#birth-fieldset {
-    margin: 15px 0px 0px 0px;
+  margin: 15px 0px 0px 0px;
 }
 
 table#birth {
-    width: 100%;
-    text-align: center;
+  width: 100%;
+  text-align: center;
 }
 
 table#birth tr td:first-child {
-    color: var(--accent-color2);
-    text-align: center;
-    font-weight: bold;
-    font-family: "Jua", sans-serif;
+  color: var(--accent-color2);
+  text-align: center;
+  font-weight: bold;
+  font-family: "Jua", sans-serif;
 }
 
 table#birth input#datepicker {
-    text-align: center;
-    width: 90%;
+  text-align: center;
+  width: 90%;
 }
 
 .join_move_login {
-    margin: 30px;
+  margin: 30px;
 }
 
 a#join-a {
-    background-color: var(--accent-color2);
-    color: var(--text-color);
-    padding: 15px 150px;
-    border: 2px solid var(--accent-color2);
-    border-radius: 4px;
-    text-decoration: none;
-    font-family: "Jua", sans-serif;
+  background-color: var(--accent-color2);
+  color: var(--text-color);
+  padding: 15px 150px;
+  border: 2px solid var(--accent-color2);
+  border-radius: 4px;
+  text-decoration: none;
+  font-family: "Jua", sans-serif;
 }
 
 a#join-a:hover {
-    background-color: var(--text-color);
-    color: var(--accent-color2);
-    transition: 0.5s;
+  background-color: var(--text-color);
+  color: var(--accent-color2);
+  transition: 0.5s;
 }
 
 @keyframes login_box_top_down {
-    from {
-        top: -300px;
-        opacity: 1;
-    }
+  from {
+    top: -300px;
+    opacity: 1;
+  }
 
-    to {
-        top: 50%;
-        opacity: 1;
-    }
+  to {
+    top: 50%;
+    opacity: 1;
+  }
 }

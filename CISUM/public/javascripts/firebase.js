@@ -81,6 +81,7 @@ function logOut() {
         .signOut()
         .then(function () {
             // Sign-out successful.
+            alert("로그아웃 되었습니다.")
         })
         .catch(function (error) {
             // An error happened.

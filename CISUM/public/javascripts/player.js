@@ -1,9 +1,4 @@
-var tag = document.createElement("script");
-tag.src = "https://www.youtube.com/iframe_api";
-var firstScriptTag = document.getElementsByTagName("script")[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-var __player;
-var index = 0;
+
 
 function titleChange(number) {
     document.querySelector("#play_view_tr_" + number).style.borderLeft =
@@ -18,14 +13,13 @@ function titleChange(number) {
 
 function nextVideo() {
     document.querySelector("#play_view_tr_" + index).style.border = "";
-
     index = index + 1;
     let selectFrame = document.getElementById("frame_" + index);
+
     if (selectFrame === null) {
         index = 0;
         selectFrame = document.getElementById("frame_" + index);
     }
-
     var videoId = selectFrame.getAttribute("data-id");
 
     setTimeout(function () {
@@ -41,12 +35,14 @@ function onYouTubeIframeAPIReady() {
     }
 }
 
-function playVideo(id, newIndex) {
+const playVideo = (videoId, newIndex) => {
     document.querySelector("#play_view_tr_" + index).style.borderLeft = "";
+    // 이 색기 왜 안됨?
 
     console.log(__player);
-    // 이 색기 왜 안됨?
-    __player.loadVideoById(id, 0, "large");
+    __player.loadVideoById(videoId, 0, "large");
+
+    titleChange(0);
 
     index = newIndex;
     titleChange(index);
@@ -171,10 +167,8 @@ document.addEventListener("DOMContentLoaded", function () {
     soundButton.addEventListener("click", function () {
         var volume = __player.getVolume();
 
-        if (
-            soundButton.getAttribute("class") === "fas fa-volume-down" ||
-            soundButton.getAttribute("class") === "fas fa-volume-up"
-        ) {
+        if (soundButton.getAttribute("class") === "fas fa-volume-down" ||
+            soundButton.getAttribute("class") === "fas fa-volume-up") {
             __player.mute();
             soundButton.setAttribute("class", "fas fa-volume-mute");
             volumeSlider.value = 0;

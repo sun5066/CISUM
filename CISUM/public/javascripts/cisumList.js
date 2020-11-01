@@ -5,12 +5,12 @@ $(document).ready(function () {
             url: "/cisum/search/",
             data: $("#search"),
 
-            error: function (error) {
-                alert("Error!");
-            },
             success: function (result) {
                 // var newHtml = $(result).find("#left-menu");
                 $("#left-menu").html(result);
+            },
+            error: function (error) {
+                alert("Error!");
             },
         });
     });
@@ -25,7 +25,7 @@ $(document).ready(function () {
                 url: "/cisum/addlist/",
                 data,
                 success: function (result) {
-                    $("#playlist-body").html(result);
+                    $("#content").html(result);
 
                     // 첫번째로 추가된 영상인경우 바로 재생
                     var listSize = $(".play-list").length;
@@ -38,31 +38,4 @@ $(document).ready(function () {
                 },
             });
         });
-
-    $("i.fas.fa-search").click(function (e) {
-        $(".container-searchList").toggle();
-        $(".container-searchList").toggleClass("open");
-
-        if ($(".container-searchList").hasClass("open")) {
-            $(".container-searchList").find("i").attr("class", "fas fa-bars");
-        } else {
-            $(".container-searchList").find("i").attr("class", "fas fa-search");
-        }
-    });
 });
-/*
-     //접기/펼치기
-        $(".btn").click(function(e){
-            e.preventDefault();
-            $(".nav").slideToggle();
-            $(".btn").toggleClass("open");
-
-            if($(".btn").hasClass("open")){
-                //open이 있을 때
-                $(".btn").find("i").attr("class","fa fa-angle-up");
-            } else {
-                //open이 없을 때
-                $(".btn").find("i").attr("class","fa fa-angle-down");
-            }
-        });
-*/
