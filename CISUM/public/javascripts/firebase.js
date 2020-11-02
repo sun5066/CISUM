@@ -1,3 +1,9 @@
+/**
+ * @author 이의현, 김민석, 김헌준
+ * @version 0.0.1
+ * @since 2020-11-03
+ */
+
 const firebaseConfig = {
     apiKey: "AIzaSyD2OeUNDTpU2l9eh0ZR0gTXBAJ_KU-vbZQ",
     authDomain: "test-4d92f.firebaseapp.com",

@@ -3,6 +3,7 @@
  * @version 0.0.1
  * @since 2020-11-03
  */
+
 $(document).ready(function () {
     $("#left-menu").on("click", "#btn_search", function () {
         $.ajax({
