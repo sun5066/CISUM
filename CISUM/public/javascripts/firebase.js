@@ -9,7 +9,7 @@ const firebaseConfig = {
     measurementId: "G-DCHZTY80LM",
 };
 
-var userJson = {};
+var userJSON = {};
 
 // 나의 파이어베이스 서버에 연결
 var defaultProject = firebase.initializeApp(firebaseConfig);
@@ -69,15 +69,32 @@ function getUser() {
             login_btn.setAttribute("class", "fas fa-toggle-on");
             login_btn.setAttribute("data-email", user.email);
 
-            userJson = {
+            userJSON = {
                 displayName: user.displayName,
                 email: user.email,
                 emailVerified: user.emailVerified,
                 photoURL: user.photoURL,
                 isAnonymous: user.isAnonymous,
                 uid: user.uid,
-                providerData: user.providerData,
             };
+
+            $.ajax({
+                url: "/cisum/playlist/" + user.email,
+                type: "GET",
+                success: function (result) {
+                    $("#playlist-body").html(result);
+
+                    if (__player === undefined) {
+                        createYouTubePlayer(
+                            $("#play_view_tr_0 img").data("id")
+                        );
+                        titleChange(0);
+                    }
+                },
+                error: function (error) {
+                    alert("서버 통신 오류 :(");
+                }
+            });
         } else {
             // User is signed out.
             document
@@ -93,7 +110,6 @@ function logOut() {
         .signOut()
         .then(function () {
             // Sign-out successful.
-            alert("로그아웃 되었습니다.");
         })
         .catch(function (error) {
             // An error happened.

@@ -1,7 +1,14 @@
+/**
+ * @author 이의현, 김민석, 김헌준
+ * @version 0.0.1
+ * @since 2020-11-03
+ */
+
 const express = require("express");
 const router = express.Router();
 const YoutubeNode = require("youtube-node");
 const ytdl = require("ytdl-core");
+const { v4: uuidv4 } = require('uuid');
 var csVO = require("../models/csVO");
 
 /**
@@ -54,40 +61,50 @@ router.post("/search", (req, res) => {
  * 메인화면과 /cisum/playlist/ 페이지 연결
  */
 router.post("/addlist", (req, res) => {
-    var json = JSON.parse(JSON.stringify(req.body));
-    console.log(json);
-    // console.log(json);
-    // let json = JSON.parse(JSON.stringify(req.body));
-    // let dataBase = new csVO(json);
-    // dataBase
-    //     .save()
-    //     .then(function () {
-    //         res.redirect("/cisum/playlist/");
-    //     })
-    //     .catch(function (error) {
-    //         console.log(error);
-    //     });
+    const json = JSON.parse(JSON.stringify(req.body));
+    const userJSON = json['userJSON'];
+    const csJSON = json['csVO'];
+    const email = userJSON['email'];
+    csJSON.user_email = email;
+
+    let dataBase = new csVO(csJSON);
+    dataBase
+        .save()
+        .then(function () {
+            res.redirect("/cisum/playlist/" + email);
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 });
 
 /**
- * @TODO 회원가입, 로그인 기능이 추가된다면
- *    유저의 PK 값으로 조건문 달아서 Select 할것
+ * @param email params로 받은 email 값을 기준으로 DB 조회해서
+ * 해당 email 이랑 일치한 값들만 리스트에 담기
  */
-router.get("/playlist", (req, res) => {
-    csVO.find().then(function (csList) {
-        res.render("playList", { csList });
-    });
+router.get("/playlist/:email", (req, res) => {
+    let email = req.params.email;
+
+    csVO.find({ "user_email": email })
+        .then(function (csList) {
+            res.render("playList", { csList });
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
 });
 
 /**
  * @param id 는 Spring의 PathVariable 방식으로
  * @url http://localhost:3000/cisum/delete/id 값으로 오면 해당 id 값을 DB에서 찾아서 삭제
  */
-router.get("/delete/:id", (req, res) => {
+router.get("/delete/:id/:email", (req, res) => {
     let _id = req.params.id;
+    let email = req.params.email;
+    console.log(email);
     csVO.findOneAndDelete({ _id })
         .then(function (result) {
-            res.redirect("/");
+            res.redirect("/cisum/playlist/" + email);
         })
         .catch(function (error) {
             console.log(error);
@@ -108,6 +125,10 @@ router.get("/join", (req, res) => {
 
 router.get("/video", (req, res) => {
     res.render("player");
+});
+
+router.get("/user", (req, res) => {
+    res.render("user");
 });
 
 /**

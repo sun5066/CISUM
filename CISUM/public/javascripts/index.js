@@ -19,6 +19,7 @@ $(function () {
             });
         } else {
             logOut();
+            document.location.href = "/";
         }
     });
     // 검색 리스트 열리는 js

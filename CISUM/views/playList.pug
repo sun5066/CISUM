@@ -12,17 +12,19 @@ script.
             document.location.href = "/cisum/download/" + id;
         });
 
-        $(document).on("click", ".delete-btn", function () {
+        $(".delete-btn").on("click").unbind("click").bind("click", function () {
             var id = $(this).attr("data-id");
+            
             $.ajax({
                 type: "GET",
-                url: "/cisum/delete/" + id,
+                url: "/cisum/delete/" + id + "/" + userJSON.email,
                 error: function (error) {
                     alert("Error!");
                 },
                 success: function (result) {
-                    var newHtml = $(result).find("#content");
-                    $("#content").html(newHtml);
+                    $("#playlist-body").html(result);
+                    //- var newHtml = $(result).find("#playlist-body");
+                    //- $("#playlist-body").html(newHtml);
                 },
             });
         });
