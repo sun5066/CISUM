@@ -1,4 +1,4 @@
-
+let index = 0;
 
 function titleChange(number) {
     document.querySelector("#play_view_tr_" + number).style.borderLeft =
@@ -31,28 +31,24 @@ function nextVideo() {
 function onYouTubeIframeAPIReady() {
     let frame = document.querySelector("#frame_" + index);
     if (frame !== null) {
-        firstPlayVideo(frame.getAttribute("data-id"));
+        createYouTubePlayer(frame.getAttribute("data-id"));
+        titleChange(0);
     }
 }
 
 const playVideo = (videoId, newIndex) => {
     document.querySelector("#play_view_tr_" + index).style.borderLeft = "";
-    // 이 색기 왜 안됨?
-
-    console.log(__player);
     __player.loadVideoById(videoId, 0, "large");
-
-    titleChange(0);
 
     index = newIndex;
     titleChange(index);
-}
+};
 
-function firstPlayVideo(id) {
+const createYouTubePlayer = (videoId) => {
     __player = new YT.Player("player", {
         height: "300%",
         width: "100%",
-        videoId: id,
+        videoId,
 
         playerVars: {
             version: 3,
@@ -74,9 +70,7 @@ function firstPlayVideo(id) {
             onStateChange: onPlayerStateChange,
         },
     });
-
-    titleChange(0);
-}
+};
 
 function onPlayerStateChange(event) {
     if (event.data === 0) {
@@ -167,8 +161,10 @@ document.addEventListener("DOMContentLoaded", function () {
     soundButton.addEventListener("click", function () {
         var volume = __player.getVolume();
 
-        if (soundButton.getAttribute("class") === "fas fa-volume-down" ||
-            soundButton.getAttribute("class") === "fas fa-volume-up") {
+        if (
+            soundButton.getAttribute("class") === "fas fa-volume-down" ||
+            soundButton.getAttribute("class") === "fas fa-volume-up"
+        ) {
             __player.mute();
             soundButton.setAttribute("class", "fas fa-volume-mute");
             volumeSlider.value = 0;

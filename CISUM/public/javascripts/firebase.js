@@ -9,6 +9,8 @@ const firebaseConfig = {
     measurementId: "G-DCHZTY80LM",
 };
 
+var userJson = {};
+
 // 나의 파이어베이스 서버에 연결
 var defaultProject = firebase.initializeApp(firebaseConfig);
 
@@ -66,6 +68,16 @@ function getUser() {
             const login_btn = document.getElementById("login_a");
             login_btn.setAttribute("class", "fas fa-toggle-on");
             login_btn.setAttribute("data-email", user.email);
+
+            userJson = {
+                displayName: user.displayName,
+                email: user.email,
+                emailVerified: user.emailVerified,
+                photoURL: user.photoURL,
+                isAnonymous: user.isAnonymous,
+                uid: user.uid,
+                providerData: user.providerData,
+            };
         } else {
             // User is signed out.
             document
@@ -81,7 +93,7 @@ function logOut() {
         .signOut()
         .then(function () {
             // Sign-out successful.
-            alert("로그아웃 되었습니다.")
+            alert("로그아웃 되었습니다.");
         })
         .catch(function (error) {
             // An error happened.

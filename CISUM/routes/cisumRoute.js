@@ -54,16 +54,19 @@ router.post("/search", (req, res) => {
  * 메인화면과 /cisum/playlist/ 페이지 연결
  */
 router.post("/addlist", (req, res) => {
-    let json = JSON.parse(JSON.stringify(req.body));
-    let dataBase = new csVO(json);
-    dataBase
-        .save()
-        .then(function (result) {
-            res.redirect("/cisum/playlist/");
-        })
-        .catch(function (error) {
-            console.log(error);
-        });
+    var json = JSON.parse(JSON.stringify(req.body));
+    console.log(json);
+    // console.log(json);
+    // let json = JSON.parse(JSON.stringify(req.body));
+    // let dataBase = new csVO(json);
+    // dataBase
+    //     .save()
+    //     .then(function () {
+    //         res.redirect("/cisum/playlist/");
+    //     })
+    //     .catch(function (error) {
+    //         console.log(error);
+    //     });
 });
 
 /**

@@ -1,7 +1,7 @@
 link(rel="stylesheet", href="/stylesheets/playList.css")
 script.
     $(function () {
-        $(document).off().on("click", '.play-btn', function() {
+        $('.play-btn').on("click").unbind("click").bind("click", function() {
             var id = $(this).attr("data-id");
             var index = Number.parseInt($(this).attr("data-index"));
             playVideo(id, index);
