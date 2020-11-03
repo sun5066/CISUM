@@ -1,13 +1,14 @@
 link(rel="stylesheet", href="/stylesheets/playList.css")
 script.
-    $(function () {
+    $(document).ready(function() {
+
         $('.play-list').on("click").unbind("click").bind("click", function() {
             var id = $(this).attr("data-id");
             var index = Number.parseInt($(this).attr("data-index"));
             playVideo(id, index);
         });
 
-        $(document).on("click", '.download-btn', function() {
+        $('.download-btn').on("click", function() {
             var id = $(this).attr("data-id");
             document.location.href = "/cisum/download/" + id;
         });
@@ -23,8 +24,6 @@ script.
                 },
                 success: function (result) {
                     $("#playlist-body").html(result);
-                    //- var newHtml = $(result).find("#playlist-body");
-                    //- $("#playlist-body").html(newHtml);
                 },
             });
         });
@@ -57,6 +56,7 @@ script.
 section.container
     br
     h1 플레이리스트
+    input(id="email" type="hidden" value=email)
     table(id="play-list-table").table.table-borderless
         each vo, index in csList
             tr(id="play_view_tr_" + index, data-id=vo.cs_id, data-index=index, data-title=vo.cs_title).play-list
