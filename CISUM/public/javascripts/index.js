@@ -24,8 +24,20 @@ $(function () {
                 },
             });
         } else {
-            logOut();
-            document.location.href = "/";
+            // logOut();
+            // document.location.href = "/";
+            $.ajax({
+                url: "/cisum/user",
+                type: "GET",
+
+                success: function (result) {
+                    $("div#login-modal").html(result);
+                    $("div#login-modal").css("display", "block");
+                },
+                error: function (error) {
+                    alert("서버 통신 오류 :(");
+                },
+            });
         }
     });
     // 검색 리스트 열리는 js

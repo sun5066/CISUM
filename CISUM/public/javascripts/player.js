@@ -7,14 +7,14 @@
 let index = 0;
 
 function titleChange(number) {
-    document.querySelector("#play_view_tr_" + number).style.borderLeft =
-        "5px solid dodgerblue";
+    var trSelect = document.querySelector("#play_view_tr_" + number);
+    if (trSelect != null) {
+        trSelect.style.borderLeft = "5px solid dodgerblue";
 
-    var title = document
-        .querySelector("#play_view_tr_" + number)
-        .getAttribute("data-title");
-    document.querySelector("div.player-title .title").innerText =
-        "현재 동영상 : " + title;
+        var title = trSelect.getAttribute("data-title");
+        document.querySelector("div.player-title .title").innerText =
+            "현재 동영상 : " + title;
+    }
 }
 
 function nextVideo() {

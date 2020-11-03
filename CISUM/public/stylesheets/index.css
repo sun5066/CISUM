@@ -95,12 +95,10 @@ section#main-section {
   font-family: "Jua", sans-serif;
 }
 
-/* 검색리스트 열리는 아이콘 넣어놓은 div css*/
 #main-section div#search-icon {
   background: var(--background-color);
 }
 
-/* 검색리스트 열리는 아이콘 css */
 div#search-icon i.fas.fa-search {
   display: inline-block;
   margin: 10px auto;
@@ -110,13 +108,11 @@ div#search-icon i.fas.fa-search {
   cursor: pointer;
 }
 
-/* 검색리스트 열리는 아이콘 호버 변경 */
 div#search-icon i.fas.fa-search:hover {
   color: var(--accent-color);
   transition: 0.5s;
 }
 
-/* leftside 열리는 css */
 #main-section .left-aside {
   flex: 0;
   font-family: "Jua", sans-serif;
@@ -125,7 +121,6 @@ div#search-icon i.fas.fa-search:hover {
   overflow: auto;
 }
 
-/* leftside 열리는 css */
 #main-section .left-aside.open {
   flex: 1px;
   background-color: var(--background-color);

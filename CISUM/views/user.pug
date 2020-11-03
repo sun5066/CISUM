@@ -1,28 +1,7 @@
 script.
     $(document).ready(function() {
-        $("#login-span").click(function () {
+        $("#user-span").click(function () {
             $("div#login-modal").css("display", "none");
-        });
-
-        $("#register").click(function () {
-            $.ajax({
-                url: "/cisum/join",
-                type: "GET",
-                success: function (result) {
-                    $("div#login-modal").html(result);
-                },
-                error: function (error) {
-                    alert("서버 통신 오류 :(");
-                },
-            });
-        });
-
-        $("#login-btn").click(function() {
-            var email = $("#userid").val();
-            var password = $("#password").val();
-            login(email, password);
-            // 유저정보 Get
-            getUser();
         });
     });
 link(rel="stylesheet", href="/stylesheets/user.css")
@@ -30,8 +9,13 @@ article(id="user-body")
     form
         div.user_close
             span(id="user-span") &times;
-        h2 LOGIN
-        input(name="m_userid", id="userid", placeholder="E-mail", type="text")
-        input(name="m_password", id="password", placeholder="Password", type="password")
-        button(type="button", id="login-btn") 로그인
-        button(id="register", type="button") 회원가입
+        div.user_img
+            img(src="../images/user_noImage.png")
+        legend 이메일
+            p lovelyhyeony
+        legend 비밀번호
+            p *****
+        legend 생년월일
+            p 00/00/00
+        //- button(type="button") 정보수정
+        

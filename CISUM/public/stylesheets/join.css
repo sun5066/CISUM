@@ -20,7 +20,7 @@ form#join-form {
 
   transform: translate(-50%, -50%);
 
-  background-color: var(--text-color);
+  background-color: var(--background-color);
   text-align: center;
   border-radius: 10px;
 
@@ -39,7 +39,7 @@ form#join-form .join_close {
   width: 100%;
 }
 
-form#join-form span#back {
+form#join-form span#login-back {
   font-size: 20px;
   font-weight: bold;
   color: var(--accent-color2);
@@ -55,13 +55,30 @@ form#join-form span#join-span {
   margin-left: auto;
 }
 
-form#join-form span#back:hover,
 form#join-form span#join-span:hover {
   color: var(--accent-color3);
 }
 
+form#join-form a#login-back {
+  font-family: "Jua", sans-serif;
+  background-color: transparent;
+  color: var(--accent-color3);
+  padding: 3px;
+  border: 2px solid var(--accent-color3);
+  border-radius: 4px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+form#join-form a#login-back:hover {
+  background-color: var(--accent-color3);
+  color: var(--text-color);
+  border: 2px solid var(--accent-color3);
+  transition: 0.5s;
+}
+
 form#join-form fieldset {
-  background-color: var(--text-color);
+  background-color: var(--background-color);
   border: 2px solid var(--accent-color2);
   border-radius: 4px;
   padding: 1rem;
@@ -91,7 +108,7 @@ table#join-table tr td:nth-child(3) {
 
 table#join-table td button {
   font-family: "Jua", sans-serif;
-  background-color: var(--text-color);
+  background-color: transparent;
   color: var(--accent-color3);
   padding: 3px;
   border: 2px solid var(--accent-color3);
@@ -112,10 +129,13 @@ form#join-form input {
   padding: 5px 10px;
   margin: 5px;
   outline: none;
-  border: 1px solid var(--accent-color2);
-  border-radius: 4px;
+  border: 0;
+  border-bottom: 1px solid var(--accent-color2);
+  background: none;
+  outline: none;
   font-family: "Nanum Gothic Coding", monospace;
   font-size: small;
+  color: #ddd;
 }
 
 form#join-form input#id,
@@ -159,7 +179,7 @@ a#join-a {
 }
 
 a#join-a:hover {
-  background-color: var(--text-color);
+  background-color: transparent;
   color: var(--accent-color2);
   transition: 0.5s;
 }
