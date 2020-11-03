@@ -1,7 +1,7 @@
 link(rel="stylesheet", href="/stylesheets/playList.css")
 script.
     $(function () {
-        $('.play-btn').on("click").unbind("click").bind("click", function() {
+        $('.play-list').on("click").unbind("click").bind("click", function() {
             var id = $(this).attr("data-id");
             var index = Number.parseInt($(this).attr("data-index"));
             playVideo(id, index);
@@ -59,15 +59,14 @@ section.container
     h1 플레이리스트
     table(id="play-list-table").table.table-borderless
         each vo, index in csList
-            tr(id="play_view_tr_" + index, data-index=index, data-title=vo.cs_title).play-list
+            tr(id="play_view_tr_" + index, data-id=vo.cs_id, data-index=index, data-title=vo.cs_title).play-list
                 td(rowspan=2, width="30%")
                     img(src="https://i.ytimg.com/vi/" + vo.cs_id +"/hqdefault.jpg", alt="", id="frame_" + index, data-id= vo.cs_id, width="100%")
                     //- iframe(id="frame_" + index, data-id= vo.cs_id, width="220", height="125", src= "https://www.youtube.com/embed/" + vo.cs_id + "?rel=0", frameborder="0", allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture", allowfullscreen).youtubeFrame
                 td= vo.cs_title
                 td(rowspan=2, width="1px").tr_hover_color
-            tr.play-list
+            tr
                 td(data-index=index).item-handle-list
                     input(type="hidden", name="index", id="index_input", value=index)
-                    button(id="play-btn", type="button", data-id=vo.cs_id, data-index=index).play-btn 이 영상 재생
                     button(id="down-btn", type="button", data-id=vo.cs_id).download-btn 다운로드
                     button(id="delete-btn", type="button", data-id=vo._id).delete-btn 목록에서 삭제
