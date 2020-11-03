@@ -99,7 +99,7 @@ function getUser() {
                 },
                 error: function (error) {
                     alert("서버 통신 오류 :(");
-                }
+                },
             });
         } else {
             // User is signed out.
@@ -110,7 +110,7 @@ function getUser() {
     });
 }
 
-function logOut() {
+function signOut() {
     firebase
         .auth()
         .signOut()

@@ -24,7 +24,7 @@ $(function () {
                 },
             });
         } else {
-            // logOut();
+            // signOut();
             // document.location.href = "/";
             $.ajax({
                 url: "/cisum/user",

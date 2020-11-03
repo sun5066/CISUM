@@ -1,90 +1,112 @@
 @charset "UTF-8";
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 article#user-body {
-  background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 #user-body form {
-  width: 400px;
-  padding: 40px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
+    width: 400px;
+    padding: 40px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
 
-  transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
 
-  background-color: rgb(50, 50, 50);
-  text-align: center;
-  border-radius: 10px;
+    background-color: rgb(50, 50, 50);
+    text-align: center;
+    border-radius: 10px;
 
-  animation-name: login_box_top_down;
-  animation-duration: 0.8s;
+    animation-name: login_box_top_down;
+    animation-duration: 0.8s;
 
-  -webkit-animation-name: login_box_top_down;
-  -webkit-animation-duration: 0.8s;
+    -webkit-animation-name: login_box_top_down;
+    -webkit-animation-duration: 0.8s;
 
-  -moz-animation-name: login_box_top_down;
-  -moz-animation-duration: 0.8s;
+    -moz-animation-name: login_box_top_down;
+    -moz-animation-duration: 0.8s;
 }
 
 #user-body form .user_close {
-  text-align: right;
+    text-align: right;
 }
 
 #user-body form span {
-  display: inline-block;
-  font-size: 20px;
-  font-weight: 500;
-  color: dodgerblue;
-  cursor: pointer;
+    display: inline-block;
+    font-size: 20px;
+    font-weight: 500;
+    color: dodgerblue;
+    cursor: pointer;
 }
 
 #user-body form span:hover {
-  color: rgb(220, 85, 96);
+    color: rgb(220, 85, 96);
 }
 
 #user-body .user_img {
-  text-align: left;
+    text-align: center;
 }
 
 #user-body form img {
-  width: 50px;
-  height: 50px;
+    width: 50px;
+    height: 50px;
 }
 
 #user-body form legend {
-  font-family: "Jua", sans-serif;
-  color: dodgerblue;
-  font-size: 20px;
-  text-align: left;
-  padding: 10px;
-  margin: 10px;
+    font-family: "Jua", sans-serif;
+    color: dodgerblue;
+    font-size: 20px;
+    text-align: left;
+    padding: 10px;
+    margin: 10px;
 }
 
 #user-body form legend p {
-  border-bottom: 2px solid dodgerblue;
-  color: ghostwhite;
-  font-family: "Jua", sans-serif;
-  font-size: 15px;
-  text-align: right;
-  padding: 10px;
-  margin: 10px;
+    border-bottom: 2px solid dodgerblue;
+    color: ghostwhite;
+    font-family: "Jua", sans-serif;
+    font-size: 15px;
+    text-align: right;
+    padding: 10px;
+    margin: 10px;
 }
 
-@keyframes login_box_top_down {
-  from {
-    top: -300px;
-    /*투명색*/
-    opacity: 1;
-  }
+#user-body form .button-box {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+}
 
-  to {
-    top: 50%;
-    opacity: 1;
-  }
+#user-body form .button-box button {
+    background-color: dodgerblue;
+    color: var(--text-color);
+    padding: 15px;
+    outline: none;
+    border: 2px solid dodgerblue;
+    border-radius: 4px;
+    text-decoration: none;
+    font-family: "Jua", sans-serif;
+}
+
+#user-body form .button-box button:hover {
+    background-color: transparent;
+    color: dodgerblue;
+    transition: 0.5s;
+}
+@keyframes login_box_top_down {
+    from {
+        top: -300px;
+        /*투명색*/
+        opacity: 1;
+    }
+
+    to {
+        top: 50%;
+        opacity: 1;
+    }
 }

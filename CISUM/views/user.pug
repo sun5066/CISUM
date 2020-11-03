@@ -1,21 +1,12 @@
-script.
-    $(document).ready(function() {
-        $("#user-span").click(function () {
-            $("div#login-modal").css("display", "none");
-        });
-    });
+script(src="/javascripts/user.js")
 link(rel="stylesheet", href="/stylesheets/user.css")
 article(id="user-body")
     form
         div.user_close
             span(id="user-span") &times;
         div.user_img
-            img(src="../images/user_noImage.png")
+            img(id="profile-img", src="../images/user_noImage.png")
         legend 이메일
-            p lovelyhyeony
-        legend 비밀번호
-            p *****
-        legend 생년월일
-            p 00/00/00
-        //- button(type="button") 정보수정
-        
+            p(id="email-text")
+        div.button-box
+            button(type="button" id="signOut") 로그아웃
