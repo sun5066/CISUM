@@ -1,5 +1,5 @@
 /**
- * @author 이의현, 김민석, 김헌준
+ * @author 이의현, 김민석
  * @version 0.0.1
  * @since 2020-11-03
  */
@@ -17,40 +17,40 @@ var csVO = require("../models/csVO");
  */
 router.post("/search", (req, res) => {
     var word = req.body.word;
-    // var youtube = new YoutubeNode();
-    // youtube.setKey("AIzaSyAlDuYSZyqDcJGGZvjbXxgv21_0pGrnKYE");
-    // youtube.addParam("order", "rating");
-    // youtube.addParam("type", "video");
-    // youtube.addParam("videoLicense", "creativeCommon");
-    // youtube.search(word, 5, function (error, result) {
-    var cisumList = [];
+    var youtube = new YoutubeNode();
+    youtube.setKey("AIzaSyAlDuYSZyqDcJGGZvjbXxgv21_0pGrnKYE");
+    youtube.addParam("order", "rating");
+    youtube.addParam("type", "video");
+    youtube.addParam("videoLicense", "creativeCommon");
+    youtube.search(word, 5, function (error, result) {
+        var cisumList = [];
 
-    // if (error) {
-    //     console.log("트래픽 제한 걸림!");
-    //     cisumList = defaultList();
+        if (error) {
+            console.log("트래픽 제한 걸림!");
+            cisumList = defaultList();
 
-    //     res.render("cisumList", {
-    //         cisumList,
-    //         search_word: "트래픽 제한 걸림!",
-    //     });
-    //     return;
-    // }
+            res.render("cisumList", {
+                cisumList,
+                search_word: "트래픽 제한 걸림!",
+            });
+            return;
+        }
 
-    // var itemList = result["items"];
-    // for (var i in itemList) {
-    //     var item = itemList[i];
+        var itemList = result["items"];
+        for (var i in itemList) {
+            var item = itemList[i];
 
-    //     cisumList.push({
-    //         cs_id: item["id"]["videoId"],
-    //         cs_title: item["snippet"]["title"],
-    //     });
-    // }
-    cisumList = defaultList();
-    res.render("cisumList", {
-        cisumList: cisumList,
-        search_word: word + " 검색결과",
+            cisumList.push({
+                cs_id: item["id"]["videoId"],
+                cs_title: item["snippet"]["title"],
+            });
+        }
+        // cisumList = defaultList();
+        res.render("cisumList", {
+            cisumList: cisumList,
+            search_word: word + " 검색결과",
+        });
     });
-    // });
 });
 
 /**
@@ -151,40 +151,6 @@ router.get("/download/:id", (req, res) => {
  */
 function defaultList() {
     var cisumList = [
-        {
-            cs_id: "63w0XSapMf4",
-            cs_title: "[녹음실 LIVE] 이진성 - 사실 나는 (원곡 : 경서예지)",
-        },
-        {
-            cs_id: "1-JkDHQq1LY",
-            cs_title: "범키 - 여기저기거기 (Feat. 수퍼비)",
-        },
-        {
-            cs_id: "tlHTOlnPcbs",
-            cs_title:
-                "[MV] Monday Kiz(먼데이 키즈) _ My love has faded away(사랑이 식었다고 말해도 돼)",
-        },
-        {
-            cs_id: "qBl1tpR_rbU",
-            cs_title: "[MV] DK _ Lie(거짓말)",
-        },
-        {
-            cs_id: "556I2f5311I",
-            cs_title: "디셈버 DK 반만 Cover (원곡 진민호)",
-        },
-        {
-            cs_id: "ltpHz8HGHKg",
-            cs_title:
-                "디셈버(DECEMBER) DK '거짓말' 소름돋는 라이브 '3옥타브 미 실화?'",
-        },
-        {
-            cs_id: "JXJJkELW_Is",
-            cs_title: "WASABI room freestyle vol.2 - 릴보이 (lIlBOI)",
-        },
-        {
-            cs_id: "7pL7prArpfg",
-            cs_title: "WASABI room freestyle vol.3 - 김태균 (TAKEONE)",
-        },
         {
             cs_id: "ZRn8wl9Bk0Q",
             cs_title:
