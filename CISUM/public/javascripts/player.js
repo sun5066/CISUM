@@ -12,8 +12,7 @@ const titleChange = (number) => {
         trSelect.style.borderLeft = "5px solid dodgerblue";
 
         var title = trSelect.getAttribute("data-title");
-        document.querySelector("div.player-title .title").innerText =
-            "현재 동영상 : " + title;
+        document.querySelector("div.player-title .title").innerText = title;
     }
 };
 
