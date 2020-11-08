@@ -25,39 +25,53 @@ var defaultStorage = firebase.storage();
 var defaultFirestore = firebase.firestore();
 
 // 로그인 기능
-function login(email, password) {
+const login = (email, password) => {
     firebase
         .auth()
         .signInWithEmailAndPassword(email, password)
-        .then(function (result) {
+        .then((result) => {
             $("div#login-modal").css("display", "none");
         })
-        .catch(function (error) {
+        .catch((error) => {
+            var status = $("#login-status-text");
             var errorCode = error.code;
-            console.log(errorCode);
             if (errorCode === "auth/wrong-password") {
-                alert("아이디/비밀번호가 맞지 않습니다!");
+                status.text("아이디/비밀번호가 맞지 않습니다.");
                 return;
             }
             if (errorCode === "auth/invalid-email") {
-                alert("찾을 수 없는 계정입니다!");
+                status.text("찾을 수 없는 계정입니다.");
                 return;
             }
         });
-}
+};
 
 // 회원가입 기능
-function register(email, password) {
+const register = (email, password) => {
     firebase
         .auth()
         .createUserWithEmailAndPassword(email, password)
-        .catch(function (error) {
+        .then(() => {
+            $("div#login-modal").html(result);
+        })
+        .catch((error) => {
+            var status = $("#join-status-text");
             var errorCode = error.code;
             var errorMessage = error.message;
-        });
-}
 
-function getUser() {
+            if (errorCode === "auth/email-already-in-use") {
+                status.text("이미 사용중인 이메일입니다.");
+            } else if (errorCode === "auth/invalid-email") {
+                status.text("메일 주소가 올바르지 않습니다.");
+            } else if (errorCode === "auth/operation-not-allowed") {
+                status.text("허가되지 않은 이메일입니다.");
+            } else if (errorCode === "auth/weak-password") {
+                status.text("암호를 좀더 강력하게 해주세요.");
+            }
+        });
+};
+
+const getUser = () => {
     /**
      * @example 데이터 코드
      * var displayName = user.displayName;
@@ -68,9 +82,11 @@ function getUser() {
      * var uid = user.uid;
      * var providerData = user.providerData;
      */
-    firebase.auth().onAuthStateChanged(function (user) {
+    firebase.auth().onAuthStateChanged((user) => {
         if (user) {
             // User is signed in.
+            $("div#login-modal").css("display", "none");
+
             const login_btn = document.getElementById("login_a");
             login_btn.setAttribute("class", "fas fa-toggle-on");
             login_btn.setAttribute("data-email", user.email);
@@ -87,7 +103,7 @@ function getUser() {
             $.ajax({
                 url: "/cisum/playlist/" + user.email,
                 type: "GET",
-                success: function (result) {
+                success: (result) => {
                     $("#playlist-body").html(result);
 
                     if (__player === undefined) {
@@ -97,7 +113,7 @@ function getUser() {
                         titleChange(0);
                     }
                 },
-                error: function (error) {
+                error: (error) => {
                     alert("서버 통신 오류 :(");
                 },
             });
@@ -108,16 +124,77 @@ function getUser() {
                 .setAttribute("class", "fas fa-toggle-off");
         }
     });
-}
+};
 
-function signOut() {
+const signOut = () => {
     firebase
         .auth()
         .signOut()
-        .then(function () {
+        .then((result) => {
             // Sign-out successful.
         })
-        .catch(function (error) {
+        .catch((error) => {
             // An error happened.
         });
-}
+};
+
+const googleLoginPopup = () => {
+    var provider = new firebase.auth.GoogleAuthProvider();
+    provider.addScope("https://www.googleapis.com/auth/plus.login");
+    firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(function (result) {
+            var token = result.credential.accessToken;
+            var user = result.user;
+        })
+        .catch(function (error) {
+            var errorCode = error.code;
+            var errorMessage = error.message;
+            var email = error.email;
+            var credential = error.credential;
+            console.log(error);
+        });
+};
+
+const twitterLoginPopup = () => {
+    var provider = new firebase.auth.TwitterAuthProvider();
+
+    firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(function (authData) {
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+};
+
+const facebookLoginPopup = () => {
+    var provider = new firebase.auth.FacebookAuthProvider();
+    provider.addScope("user_birthday");
+
+    firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(function (authData) {
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+};
+
+const githubLoginPopup = () => {
+    var provider = new firebase.auth.GithubAuthProvider();
+    provider.addScope("repo");
+
+    firebase
+        .auth()
+        .signInWithPopup(provider)
+        .then(function (result) {
+            console.log("성공!");
+        })
+        .catch(function (error) {
+            console.log(error);
+        });
+};

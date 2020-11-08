@@ -6,7 +6,7 @@
 
 let index = 0;
 
-function titleChange(number) {
+const titleChange = (number) => {
     var trSelect = document.querySelector("#play_view_tr_" + number);
     if (trSelect != null) {
         trSelect.style.borderLeft = "5px solid dodgerblue";
@@ -15,9 +15,9 @@ function titleChange(number) {
         document.querySelector("div.player-title .title").innerText =
             "현재 동영상 : " + title;
     }
-}
+};
 
-function nextVideo() {
+const nextVideo = () => {
     document.querySelector("#play_view_tr_" + index).style.border = "";
     index = index + 1;
     let selectFrame = document.getElementById("frame_" + index);
@@ -32,15 +32,15 @@ function nextVideo() {
         __player.loadVideoById(videoId, 0, "large");
         titleChange(index);
     }, 1000);
-}
+};
 
-function onYouTubeIframeAPIReady() {
+const onYouTubeIframeAPIReady = () => {
     let frame = document.querySelector("#frame_" + index);
     if (frame !== null) {
         createYouTubePlayer(frame.getAttribute("data-id"));
         titleChange(0);
     }
-}
+};
 
 const playVideo = (videoId, newIndex) => {
     document.querySelector("#play_view_tr_" + index).style.borderLeft = "";
@@ -51,6 +51,10 @@ const playVideo = (videoId, newIndex) => {
 };
 
 const createYouTubePlayer = (videoId) => {
+    if (document.querySelector(".play-list") === null) {
+        return;
+    }
+
     __player = new YT.Player("player", {
         height: "300%",
         width: "100%",
@@ -78,16 +82,17 @@ const createYouTubePlayer = (videoId) => {
     });
 };
 
-function onPlayerStateChange(event) {
+const onPlayerStateChange = (event) => {
     if (event.data === 0) {
         nextVideo();
     }
-}
+};
 
-function onPlayerReady(event) {
+const onPlayerReady = (event) => {
     event.target.playVideo();
     document.getElementById("sleep_btn").setAttribute("class", "fas fa-pause");
     var volume = __player.getVolume();
+
     if (volume === 0) {
         document
             .querySelector("#sound_btn")
@@ -102,7 +107,7 @@ function onPlayerReady(event) {
             .setAttribute("class", "fas fa-volume-up");
     }
     document.querySelector("#volume_slider").value = volume;
-}
+};
 
 /**
  * @HACK 코드 정리가 필요한 이벤트 메서드 구간
@@ -122,14 +127,12 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     const stopButton = document.querySelector("#stop_btn");
-
     stopButton.addEventListener("click", function () {
         sleepButton.setAttribute("class", "fas fa-play");
         __player.stopVideo();
     });
 
     const prevButton = document.querySelector("#prev_btn");
-
     prevButton.addEventListener("click", function () {
         document.querySelector("#play_view_tr_" + index).style.border = "";
 
@@ -157,13 +160,11 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     const nextButton = document.querySelector("#next_btn");
-
     nextButton.addEventListener("click", function () {
         nextVideo();
     });
 
     const soundButton = document.querySelector("#sound_btn");
-
     soundButton.addEventListener("click", function () {
         var volume = __player.getVolume();
 
@@ -186,7 +187,6 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     const volumeSlider = document.querySelector("#volume_slider");
-
     volumeSlider.addEventListener("input", function () {
         var volume = volumeSlider.value;
         __player.setVolume(volume);

@@ -103,6 +103,23 @@ article#login-body {
   font-weight: bold;
 }
 
+#login-body form .social_logobox {
+  display: flex;
+  justify-content: center;
+}
+
+#login-body form .social_logobox img {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  margin: 0px 10px;
+}
+
+p#login-status-text {
+  font-family: "Nanum Gothic Coding", monospace;
+  color: rgb(158, 27, 27);
+}
+
 @keyframes login_box_top_down {
   from {
     top: -300px;

@@ -106,24 +106,6 @@ table#join-table tr td:nth-child(3) {
   text-align: center;
 }
 
-table#join-table td button {
-  font-family: "Jua", sans-serif;
-  background-color: transparent;
-  color: var(--accent-color3);
-  padding: 3px;
-  border: 2px solid var(--accent-color3);
-  border-radius: 4px;
-  cursor: pointer;
-  text-decoration: none;
-}
-
-table#join-table td button:hover {
-  background-color: var(--accent-color3);
-  color: var(--text-color);
-  border: 2px solid var(--accent-color3);
-  transition: 0.5s;
-}
-
 form#join-form input {
   width: 100%;
   padding: 5px 10px;
@@ -141,6 +123,14 @@ form#join-form input {
 form#join-form input#id,
 form#join-form input#email {
   width: 100%;
+}
+
+form#join-form input:-webkit-autofill,
+form#join-form input:-webkit-autofill:hover,
+form#join-form input:-webkit-autofill:focus,
+form#join-form input:-webkit-autofill:active {
+  -webkit-transition: "color 9999s ease-out, background-color 9999s ease-out" !important;
+  -webkit-transition-delay: 9999s !important;
 }
 
 fieldset#birth-fieldset {
@@ -168,20 +158,24 @@ table#birth input#datepicker {
   margin: 30px;
 }
 
-a#join-a {
+button#btn-join {
   background-color: var(--accent-color2);
   color: var(--text-color);
-  padding: 15px 150px;
+  padding: 5% 30%;
   border: 2px solid var(--accent-color2);
   border-radius: 4px;
-  text-decoration: none;
   font-family: "Jua", sans-serif;
 }
 
-a#join-a:hover {
+button#btn-join:hover {
   background-color: transparent;
   color: var(--accent-color2);
   transition: 0.5s;
+}
+
+p#join-status-text {
+  font-family: "Nanum Gothic Coding", monospace;
+  color: rgb(158, 27, 27);
 }
 
 @keyframes login_box_top_down {

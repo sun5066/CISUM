@@ -30,10 +30,17 @@
 -   10.28 : 디자인 부분 수정 - lovelyhyeony  
     <br/>
 -   10.29 할일 : 회원별 플레이리스트 DB 구현 - sun5066
--   10.29 할일 : user폼 디자인 꾸미기 - lovelyhyeony
+-   11.02 : user폼 디자인 꾸미기 완료  
+    images/user_noImage.png 추가,  
+    javascripts/index.js 변경,  
+    stylesheets/index.css, join.css, login.css, user.css 변경,  
+    views/join.pug, login.pug, user.pug 변경 - lovelyhyeony  
+    <br/>
+-   11.06 : **views**/join.pug, login.pug,  
+    **stylesheets**/join.css,login.css,  
+    **images**/소셜계정로고들 넣어놓음!
 
 ### 추가 할 것들(아이디어)
 
--   user폼, 회원가입에서 화살표버튼 만들어서 뒤로가게
--   비밀번호 수정하는 폼 만들기 할쮜~말쮜 생각듕
+-   회원가입에서 화살표버튼 만들어서 뒤로가게 완료
 -   반응형으로 화면을 줄이면 아래로 흐르게 만들기

@@ -6,6 +6,7 @@
 
 $(function () {
     getUser();
+
     $("div#login-modal").css("display", "none");
     $("#login_a").click(function () {
         var fas = $(this).attr("class");

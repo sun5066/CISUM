@@ -14,7 +14,6 @@ html(lang="ko")
     script(src="https://kit.fontawesome.com/7917d00817.js")
     script(src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js")
     script(src="/javascripts/firebase.js")
-    script(src="/javascripts/first-connect.js")
     script(src="https://www.youtube.com/iframe_api")
     script.
       var tag = document.createElement("script");
@@ -22,6 +21,12 @@ html(lang="ko")
       var firstScriptTag = document.getElementsByTagName("script")[0];
       firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
       var __player;
+
+      document.addEventListener("DOMContentLoaded", () => {
+        setTimeout(() => {
+          document.getElementById("first-connect-body").style.display = "none";
+        }, 1400);
+      });
     script(src="/javascripts/index.js")
 
     style.
@@ -50,5 +55,6 @@ html(lang="ko")
     div(id="first-connect-body")
       video(src="../video/cisum_logo.mp4", width="80%", autoplay, muted)
     div(id="login-modal")
+    //- (oncontextmenu='return false', onselectstart='return false', ondragstart='return false')
   body
     block content
