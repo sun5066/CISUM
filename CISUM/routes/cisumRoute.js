@@ -86,6 +86,7 @@ router.post("/addlist", (req, res) => {
 });
 
 /**
+ * @HACK 보완이 필요한 코드
  * @param email params로 받은 email 값을 기준으로 DB 조회해서
  * 해당 email 이랑 일치한 값들만 리스트에 담기
  */
